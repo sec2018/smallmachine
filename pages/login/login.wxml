@@ -1,0 +1,16 @@
+<view class="page-login2">
+    <view wx:if="{{showLogin}}">
+        <block wx:if="{{!showDouKou}}">
+            <image mode="aspectFit" src="/image/logo.png" />
+            <view class="name">智能设备云员工端</view>
+        </block>
+        <blcok wx:if="{{showDouKou}}">
+            <image mode="aspectFit" src="/image/logo2.png" />
+            <view class="name">智能设备云</view>
+        </blcok>
+        <input placeholder-style="color:rgba(170,170,170,1);" placeholder="请输入用户名" bindinput="onInput" data-type="name" />
+        <input placeholder-style="color:rgba(170,170,170,1);" password placeholder="请输入密码" bindinput="onInput" data-type="password" />
+        <view class="btn" bindtap="onLogin">登录</view>
+        <view class="remind">请使用智能设备云系统账号密码登录</view>
+    </view>
+</view>

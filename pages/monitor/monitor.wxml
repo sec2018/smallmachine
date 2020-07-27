@@ -1,0 +1,16 @@
+<!--pages/monitor.wxml-->
+<block wx:if="{{1==0}}">
+	
+</block>
+<!-- 已经登录显示界面 -->
+<block wx:else>
+	<view>
+        监控页面！
+        <view>{{equipinfo.cnc_ip}}</view>
+        <view>{{equipinfo.cnc_type}}</view>
+        <view>{{equipinfo.customerid}}</view>
+        <view>{{equipinfo.customername}}</view>
+        <view>{{equipinfo.id}}</view>
+        <view>{{equipinfo.statusInfo.cnc_collecttime}}</view>
+    </view> 
+</block>
