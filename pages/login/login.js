@@ -20,23 +20,23 @@ Page({
                 if(wx.getStorageSync("token")!=null && wx.getStorageSync("token")!="" && app.globalData.userInfo!=null){
                     var that = this;
                     utils.serverRequest({
-                    url: '/checktoken',
-                    methods:'GET',
-                    success:function(res){
-                        console.log(res);
-                        if(res.data.code == 200){
-                            wx.reLaunch({
-                                url: "/pages/index/index"
-                            });
-                        }else{
+                        url: '/checktoken',
+                        methods:'GET',
+                        success:function(res){
+                            console.log(res);
+                            if(res.data.code == 200){
+                                wx.reLaunch({
+                                    url: "/pages/index/index"
+                                });
+                            }else{
+                                // 登录
+                                return;
+                            }
+                        },
+                        fail:function(res){
                             // 登录
                             return;
                         }
-                    },
-                    fail:function(res){
-                        // 登录
-                        return;
-                    }
                     });
                 }
             },

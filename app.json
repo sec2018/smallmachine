@@ -10,7 +10,9 @@
     "pages/user/phoneLogin/phoneLogin",
     "pages/search/search",
     "pages/monitor/monitor",
-    "pages/scan/scan"
+    "pages/scan/scan",
+    "pages/main/main",
+    "pages/singlecompany/singlecompany"
   ],
   "window": {
     "navigationBarTitleText": "设备智能云",
@@ -30,12 +32,12 @@
       },
       {
         "pagePath": "pages/scan/scan",
-        "text": "扫码",
+        "text": "巡检",
         "iconPath": "/image/icon/fen-icon.png",
         "selectedIconPath": "/image/icon/fen-selectIcon.png"
       },
       {
-        "pagePath": "pages/monitor/monitor",
+        "pagePath": "pages/main/main",
         "text": "监控",
         "iconPath": "/image/icon/collection-icon.png",
         "selectedIconPath": "/image/icon/collection-selectIcon.png"

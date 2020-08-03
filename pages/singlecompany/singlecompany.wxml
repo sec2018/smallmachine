@@ -1,0 +1,18 @@
+<!--pages/singlecompany/singlecompany.wxml-->
+<view class='companysListView'>
+  <!-- 公司名称 -->
+   <view class='CompanyNameView'>
+    <text class='CompanyNameText'>{{company.companyname}}</text>
+   </view>
+  <view>
+   <!-- 公司图片 -->
+   <view class='iconImageView'>
+    <image class='iconImage' src="{{company.companyimg}}" mode = 'aspectFit'></image>
+   </view>
+  <view>
+    <text>{{company.companydescription}}</text>
+   </view>
+  
+
+  </view>
+</view>

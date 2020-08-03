@@ -1,1 +1,6 @@
 /* pages/scan.wxss */
+.button-sp-area{
+  margin: 150px auto;
+  padding-top: 15px;
+  width: 80%;
+}

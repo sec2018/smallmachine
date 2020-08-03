@@ -1,0 +1,24 @@
+<!--pages/main/main.wxml-->
+<text>公司列表</text>
+<!-- 公司列表 -->
+<view class='companysListView'>
+ <block wx:for="{{companys}}" data-index="{{index}}" wo:for-item='company'>
+ <!-- 每个cell -->
+  <view class='item' wx:key="{{item.id}}" bindtap='companyDetailAction' data-item= "{{item}}" data-id="{{item.id}}" >
+   <!-- 公司图片 -->
+   <view class='iconImageView'>
+    <image class='iconImage' src="{{item.companyimg}}" mode = 'aspectFit'></image>
+   </view>
+
+   <!-- 公司名称 -->
+   <view class='CompanyNameView'>
+    <text class='CompanyNameText'>{{item.companyname}}</text>
+   </view>
+
+   	<view class="icon_">
+      <text class="icon-right text-gray"></text>
+    </view>
+  
+  </view>
+ </block>
+</view>

@@ -74,5 +74,49 @@ Page({
         })
       }
     })
+  },
+  // 扫码入库
+  datain: function(){
+    wx.scanCode({
+      success: function(res){
+        // 跳转页面
+        // wx.navigateTo({
+        //   url: '../datain/datain?res='+res['result']
+        // })
+      },
+      fail: function(res){
+        var error = '入库扫码失败'
+        // wx.navigateTo({
+        //   url: '../error/error?error='+error,
+        // })
+      }
+    })
+  },
+
+
+  // 扫码出库
+  dataout: function(){
+    wx.scanCode({
+      success: function(res){
+        var result = res['result']
+        // wx.navigateTo({
+        //   url: '../dataout/dataout?code='+result,
+        // })
+      },
+      fail: function (res) {
+        var error = '出库扫码失败'
+        // wx.navigateTo({
+        //   url: '../error/error?error=' + error,
+        // })
+      }
+    })
+    
+  },
+
+  // 查询条目
+  query: function(){
+    // wx.navigateTo({
+    //   url: '../query/query',
+    // })
   }
 })
