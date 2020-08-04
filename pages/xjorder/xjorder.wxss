@@ -1,0 +1,63 @@
+/* pages/xjorder/xjorder.wxss */
+.container {
+  padding: 0;
+  align-items: left;
+  padding-left: 8rpx;
+}
+.uploadContainer{
+  padding: 10rpx;
+  width: 100%;
+  height: 620rpx;
+}
+.imgContainer{
+  width: 100%;
+  height: 370rpx;
+  padding: 2rpx;
+}
+.page-section{
+  width:100%;
+  height: 250rpx;
+}
+.page-section .note{
+  height: 30rpx;
+  font-size: 30rpx;
+  font-weight: bold;
+  color: red;
+  margin-bottom: 10rpx;
+}
+.noteContent{
+  width: 98%;
+  border:2rpx solid #ccc;
+  height: 200rpx;
+  padding: 0 5rpx;
+  border-radius: 5rpx;
+  box-shadow: 2rpx;
+  margin-top: 5rpx;
+}
+.noteContent textarea{
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.imageInfo {
+  float:left;
+  position:relative;
+  border: 1rpx solid #ccc;
+  border-radius: 2rpx;
+  width: 23%;
+  height: 175rpx;
+  margin: 2rpx 6rpx;
+}
+.imageInfo image{
+  width: 100%;
+  height: 100%;
+}
+.delete-btn{
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+button {
+  width: 100%;
+  margin-top: 10rpx;
+}

@@ -1,47 +1,21 @@
-// pages/singlecompany/singlecompany.js
-var utils = require('../../utils/utils.js');
-
-
+// pages/xjdetail/xjdetail.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    company:{},
-    id:null
+    historyinfo:[],
+    lasthistoryinfo:{},
+    chkpoint:{},
+    equipment:{}
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that = this;
-    that.setData({
-      id: options.id
-    })
-    let dataParam = {};
-    dataParam.id = options.id;
-    utils.serverRequest({
-      url: '/check/company/findbyid',
-      data: dataParam,
-      methods:'GET',
-      success:function(res){
-          console.log(res);
-          if(res.data.code == 200){
-            that.setData({
-              company: res.data.data, //请求结果数据
-            })
-          }else{
-              // 登录
-              return;
-          }
-      },
-      fail:function(res){
-          // 登录
-          return;
-      }
-    });
+    
   },
 
   /**
@@ -92,9 +66,9 @@ Page({
   onShareAppMessage: function () {
 
   },
-  XjAction: function (e) { 
+  XjDetailAction: function (e) { 
     wx.navigateTo({
-      url: '../xjdetail/xjdetail'
+      url: '../xjorder/xjorder'
     })
-  },
+  }
 })

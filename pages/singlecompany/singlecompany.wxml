@@ -12,7 +12,9 @@
   <view>
     <text>{{company.companydescription}}</text>
    </view>
-  
+  <view bindtap='XjAction'>
+   某个设备(点我)
+  </view>
 
   </view>
 </view>

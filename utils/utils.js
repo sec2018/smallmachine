@@ -30,6 +30,35 @@ let myRequest = function(args = {url:'',methods:'GET', data:{}, success:function
     })
 }
 
+let fileRequest = function(args = {url:'', filePath:'', success:function(){},fail:function(){}}){
+  wx.uploadFile({
+      url: apiRoot+args.url,
+      header: {'token':wx.getStorageSync('token')},
+      filePath: args.filePath,
+      name: 'file',
+      method: 'POST',
+      dataType: 'json',
+      responseType: 'text',
+      success: (res)=>{
+        if(res.statusCode == 200){
+          // 请求成功执行回调函数
+          let data = res.data;
+          // 为什么这么这么写，看下文
+          if ('object' !== typeof data) {
+            //坑一：与wx.request不同，wx.uploadFile返回的是[字符串]，需要自己转为JSON格式
+            //如果不转换，直接用点运算符是获取不到后台返回的值的
+            data = JSON.parse(data)
+            res.data = data;
+          }
+          args.success(res)
+        }else{
+          // 请求失败执行回调函数
+          args.fail()
+        }
+      },
+  })
+}
+
 let serverRequest = function(args = {url:'',methods:'GET', data:{}, success:function(){},fail:function(){}}){
   wx.request({
       url: apiRoot+args.url,
@@ -92,5 +121,6 @@ let loginAndSaveUser = function(){
 module.exports = {
   myRequest : myRequest,
   serverRequest: serverRequest,
-  loginAndSaveUser: loginAndSaveUser
+  loginAndSaveUser: loginAndSaveUser,
+  fileRequest: fileRequest
 }

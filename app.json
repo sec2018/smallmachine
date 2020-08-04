@@ -12,7 +12,9 @@
     "pages/monitor/monitor",
     "pages/scan/scan",
     "pages/main/main",
-    "pages/singlecompany/singlecompany"
+    "pages/singlecompany/singlecompany",
+    "pages/xjdetail/xjdetail",
+    "pages/xjorder/xjorder"
   ],
   "window": {
     "navigationBarTitleText": "设备智能云",

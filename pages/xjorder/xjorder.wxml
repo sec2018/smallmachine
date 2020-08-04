@@ -1,0 +1,27 @@
+<!--pages/xjorder/xjorder.wxml-->
+<view class="container">
+  现场照片
+  <!-- <uploadImages bindmyevent="myEventListener" count='{{countPic}}' showUrl="{{showImgUrl}}" uploadUrl="{{uploadImgUrl}}"></uploadImages> -->
+
+  <view class="uploadContainer">
+  <!-- 图片预览区域 -->
+    <view class="imgContainer">
+      <view class='imageInfo' wx:for="{{imgs}}" wx:for-item="item"  wx:key="*this">
+          <image src="{{item}}"data-index="{{index}}"mode="aspectFill" bindtap="previewImg">
+                    <icon type='cancel' class="delete-btn" data-index="{{index}}" catchtap="deleteImg"></icon>
+          </image>
+      </view>
+    </view>
+    <!-- 备注 -->
+    <view class="page-section">
+    <view class="weui-cells__title note">提示:图片最多上传8张,点击X可以取消上传图片</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_input noteContent">
+         <textarea disabled="{{inputDisable}}" bindinput="checkInput" placeholder="作品备注" maxlength="101" placeholder-style="color:grey;"/>
+      </view>
+    </view>
+  </view>
+    <button class="upload-img-btn" bindtap="chooseImg" type='primary'>拍照  / 上传</button>
+    <button class="upload-img-btn" bindtap="sureUpload" type='warn'>上传</button>
+  </view>
+</view>

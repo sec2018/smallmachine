@@ -1,0 +1,4 @@
+<!--pages/xjdetail/xjdetail.wxml-->Detail
+<view bindtap='XjDetailAction'>
+  设备巡检单(点我)
+</view>
