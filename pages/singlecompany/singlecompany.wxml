@@ -2,15 +2,15 @@
 <view class='companysListView'>
   <!-- 公司名称 -->
    <view class='CompanyNameView'>
-    <text class='CompanyNameText'>{{company.companyname}}</text>
+    <text class='CompanyNameText'>{{company.name}}</text>
    </view>
   <view>
    <!-- 公司图片 -->
    <view class='iconImageView'>
-    <image class='iconImage' src="{{company.companyimg}}" mode = 'aspectFit'></image>
+    <image class='iconImage' src="{{imgurl}}{{company.img}}" mode = 'aspectFit'></image>
    </view>
   <view>
-    <text>{{company.companydescription}}</text>
+    <text>{{company.description}}</text>
    </view>
   <view bindtap='XjAction'>
    某个设备(点我)

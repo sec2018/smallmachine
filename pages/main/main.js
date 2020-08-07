@@ -1,6 +1,7 @@
 // pages/main/main.js
 var utils = require('../../utils/utils.js');
-
+const app = getApp();
+let imgurl = app.globalData.imgurl;
 
 Page({
 
@@ -9,6 +10,7 @@ Page({
    */
   data: {
     companys: [], // 公司列表
+    imgurl: imgurl
   },
 
   /**
@@ -30,8 +32,8 @@ Page({
    */
   onShow: function () {
     let that = this;
-    utils.serverRequest({
-      url: '/check/company/list',
+    utils.pythonRequest({
+      url: '/getCompanyAll/',
       methods:'GET',
       success:function(res){
           console.log(res);
@@ -86,9 +88,9 @@ Page({
 
   },
   companyDetailAction: function (e) { 
-    let id = parseInt(e.currentTarget.dataset.item.id);
+    let num = parseInt(e.currentTarget.dataset.item.fields.num);
     wx.navigateTo({
-      url: '../singlecompany/singlecompany?id='+id,
+      url: '../singlecompany/singlecompany?num='+num,
     })
   },
 })

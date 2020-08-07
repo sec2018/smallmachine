@@ -4,15 +4,15 @@
 <view class='companysListView'>
  <block wx:for="{{companys}}" data-index="{{index}}" wo:for-item='company'>
  <!-- 每个cell -->
-  <view class='item' wx:key="{{item.id}}" bindtap='companyDetailAction' data-item= "{{item}}" data-id="{{item.id}}" >
+  <view class='item' wx:key="{{item.pk}}" bindtap='companyDetailAction' data-item= "{{item}}" data-id="{{item.pk}}" >
    <!-- 公司图片 -->
    <view class='iconImageView'>
-    <image class='iconImage' src="{{item.companyimg}}" mode = 'aspectFit'></image>
+    <image class='iconImage' src="{{imgurl}}{{item.fields.img}}" mode = 'aspectFit'></image>
    </view>
 
    <!-- 公司名称 -->
    <view class='CompanyNameView'>
-    <text class='CompanyNameText'>{{item.companyname}}</text>
+    <text class='CompanyNameText'>{{item.fields.name}}</text>
    </view>
 
    	<view class="icon_">

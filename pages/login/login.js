@@ -19,9 +19,9 @@ Page({
             //   if(wx.getStorageSync("token")!=null && app.globalData.userInfo!=null){
                 if(wx.getStorageSync("token")!=null && wx.getStorageSync("token")!="" && app.globalData.userInfo!=null){
                     var that = this;
-                    utils.serverRequest({
-                        url: '/checktoken',
-                        methods:'GET',
+                    utils.pythonRequest({
+                        url: '/verifyToken/',
+                        methods:'POST',
                         success:function(res){
                             console.log(res);
                             if(res.data.code == 200){
@@ -60,13 +60,15 @@ Page({
             wx.showToast({ mask: true, icon: "none", title: "密码不能为空" });
             return;
         }
-        utils.serverRequest({
-            url: '/wx/user/'+app.globalData.appid+'/login',
-            type: "GET",
-            data: {
-                username: this.data.name,
-                password: this.data.password
-            },
+        let dataparam = {};
+        dataparam.username = this.data.name;
+        dataparam.password = this.data.password;
+        // utils.serverRequest({
+        //     url: '/wx/user/'+app.globalData.appid+'/login',
+        utils.pythonRequest({
+            url: '/getJWTtoken/',
+            methods: "POST",
+            data: dataparam,
             success: res => {
                 if (res.data.code == 500) {
                     wx.showToast({
@@ -76,21 +78,28 @@ Page({
                     });
                     return;
                 }
-                this.loginSuccess(res.data);
+                this.loginSuccess(res.data.data);
             }
         });
     },
 
-    loginSuccess({ token = "", userInfo = {} }) {
+    loginSuccess({ token = "", userinfo = {} }) {
         wx.hideToast();
         if (!token) {
             this.setData({ showLogin: true });
         } else {
             wx.setStorageSync("token", token);
-            app.globalData.userInfo = userInfo;
-            wx.reLaunch({
-                url: "/pages/index/index"
-            });
+            app.globalData.userInfo = userinfo;
+            if(userinfo.is_superuser){
+                wx.reLaunch({
+                    url: "/pages/index/index"
+                });
+            }else{
+                wx.reLaunch({
+                    url: '/pages/singlecompany/singlecompany?username='+username,
+                });
+            }
+            
             wx.hideLoading();
             // apiStaff.staffInfo({
             //     success: staffInfo => {

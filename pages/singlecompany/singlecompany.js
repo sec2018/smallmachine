@@ -1,6 +1,7 @@
 // pages/singlecompany/singlecompany.js
 var utils = require('../../utils/utils.js');
-
+const app = getApp();
+let imgurl = app.globalData.imgurl;
 
 Page({
 
@@ -9,7 +10,10 @@ Page({
    */
   data: {
     company:{},
-    id:null
+    id:null,
+    company_num:null,
+    username:null,
+    imgurl: imgurl
   },
 
   /**
@@ -17,20 +21,21 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
-    that.setData({
-      id: options.id
-    })
+    if(options.num != null && options.username == null){
+      that.setData({
+        company_num: options.num
+      })
     let dataParam = {};
-    dataParam.id = options.id;
-    utils.serverRequest({
-      url: '/check/company/findbyid',
+    dataParam.company_num = options.num;
+    utils.pythonRequest({
+      url: '/getComEqu/',
       data: dataParam,
-      methods:'GET',
+      methods:'POST',
       success:function(res){
           console.log(res);
           if(res.data.code == 200){
             that.setData({
-              company: res.data.data, //请求结果数据
+              company: res.data.data.company.fields, //请求结果数据
             })
           }else{
               // 登录
@@ -40,8 +45,14 @@ Page({
       fail:function(res){
           // 登录
           return;
-      }
-    });
+        }
+      });
+    }else{
+      that.setData({
+        username: options.username
+      })
+
+    }
   },
 
   /**

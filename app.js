@@ -12,7 +12,8 @@ App({
   },
   globalData: {
     userInfo: null,
-    appid: 'wx26901b3877e768c4'
+    appid: 'wx26901b3877e768c4',
+    imgurl: 'https://micro-service.online:8051/media/'
   },
   mylogin: function(){
     // 登录
@@ -26,7 +27,7 @@ App({
           methods:'GET',
           data: dataParam,
           success:function(res){
-            console.log(res.data.token);
+            // console.log(res.data.token);
             wx.setStorageSync('sessionKey', res.data.sessionKey);
             wx.showToast({
               title: res.data.sessionKey

@@ -101,10 +101,12 @@ Page({
               icon: "none",
               title: res.data.msg
             });
-            app.globalData.userInfo = res.data.userInfo;
-            that.setData({
-              login: false
-            });
+            if(res.data.code == 200){
+              app.globalData.userInfo = res.data.userInfo;
+              that.setData({
+                login: false
+              });
+            }
           },
           fail:function(res){
           }
