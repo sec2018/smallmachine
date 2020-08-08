@@ -1,7 +1,16 @@
 /* pages/user/user.wxss */
-.body {
-    background-color: #f1f1f1;
+
+.user-btn{
+  height: 76rpx;
+  line-height: 76rpx;
+  font-size:30rpx;
 }
+.user-item{
+  padding: 36rpx 30rpx;
+  border-bottom: 1px solid #dcdcdc;
+}
+
+
 
 .topBar {
     width: 100%;
