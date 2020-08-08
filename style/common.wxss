@@ -1,219 +1,308 @@
-/* 公共样式 */
-
-/* 轮播图 */
-
-.swiper-container{
-  width: 90%;
-  height: 280rpx;
-  margin: 0rpx auto;
-  position: relative;
-  border-radius: 15rpx;
-  overflow: hidden;
-}
-.swiper{
-  width: 100%;
-  height: 100%;
-  border-radius: 15rpx;
-}
-.swiperItem{
-  width: 100%;
-  height: 100%;
-  border-radius: 15rpx;
-}
-.swiperItem>image{
-  width: 100%;
-  height: 100%;
-  border-radius: 15rpx;
-}
-.dots{
-  width: auto;
-  height: 10rpx;
-  position: absolute;
-  bottom: 20rpx;
-  border-radius: 50rpx;
-  left: 240rpx;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 3rpx 10rpx;
-}
-.dotsItem{
-  width: 8rpx;
-  height: 8rpx;
-  margin: 0rpx 8rpx;
-  border-radius: 50%;
-  background-color: #cdcdcd;
-  transition: all .3s;
-}
-.dotActive{
-  width: 10rpx;
-  height: 10rpx;
-  background-color: #fff;
-}
-
-/* 主要内容列表样式 */
-.contentList{
-  width: 90%;
-  margin: 0rpx auto;
-  margin-top: 10rpx;
-}
-.content{
-  width: 100%;
-  height: auto;
-  padding: 20rpx 0rpx;
-  display: flex;
-  justify-content: space-between;
-  border-bottom: 1rpx solid #f1f1f1;
-}
-.contentImg{
-  width: 232rpx;
-  height: 232rpx;
-  border-radius: 15rpx;
-}
-.contentImg>image{
-  width: 100%;
-  height: 100%;
-  border-radius: 15rpx;
-}
-.content-right{
-  width: 530rpx;
-  height: 100%;
-  margin-left: 20rpx;
-  display: flex;
-  flex-direction: column;
-}
-.content-title{
-  width: 100%;
-  height: 138rpx;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-}
-.titleText{
-  width: 100%;
-  font-size: 35rpx;
-  color: #333;
-  text-align: left;
+/* ------布局start------*/
+.g-flex {
   display: -webkit-box;
-  -webkit-line-clamp: 1;/*行数n*/
-  -webkit-box-orient: vertical; 
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.introduction{
-  width: 100%;
-  font-size: 28rpx;
-  color: #cdcdcd;
-  text-align: left;
-  padding: 15rpx 0rpx;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;/*行数n*/
-  -webkit-box-orient: vertical; 
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.count{
-  width: 100%;
-  height: 50rpx;
+  display: -webkit-flex;
   display: flex;
-  justify-content: start;
-  align-items: center;
-}
-.playcount{
- font-size: 25rpx;
- color: #cdcdcd;
- margin-right: 30rpx;
-}
-.jicount{
-  font-size: 25rpx;
-  color: #cdcdcd;
 }
 
-/* 登录样式 */
-.logo {
-  width: 128rpx;
-  height: 128rpx;
-  margin: 0rpx auto;
-  position: relative;
-  top: 200rpx;
+.g-flex-wap {
+  -webkit-box-wrap : wrap;
+  -webkit-flex-wrap: wrap;
+  flex-wrap        : wrap;
+  align-content    : space-between
 }
 
-.logoImg {
-  width: 100%;
-  height: 100%;
+.g-flex-v {
+  -webkit-box-direction : normal;
+  -webkit-box-orient    : vertical;
+  -webkit-flex-direction: column;
+  flex-direction        : column;
 }
 
-.loginButton {
-  width: 80%;
-  margin: 0rpx auto;
-  position: relative;
-  top: 500rpx;
+.g-flex-rr {
+  -webkit-box-direction : normal;
+  -webkit-box-orient    : vertical;
+  -webkit-flex-direction: row-reverse;
+  flex-direction        : row-reverse;
 }
 
-.wechatLogin, .phoneLogin {
-  width: 100%;
-  height: 80rpx;
-  border-radius: 50rpx;
-  border: 0rpx;
-  outline: none;
+.g-flex-center {
+  -webkit-box-pack       : center;
+  -webkit-justify-content: center;
+  justify-content        : center;
 }
 
-.wechatLogin button {
-  background-color: #70e500;
-  border-radius: 50rpx;
-  border: none;
-  color: #fff;
+.g-flex-v-center {
+  -webkit-box-align  : center;
+  -webkit-align-items: center;
+  align-items        : center;
 }
 
-.phoneLogin {
-  margin-top: 40rpx;
+.g-flex-v-top {
+  -webkit-box-align  : start;
+  -webkit-align-items: flex-start;
+  align-items        : flex-start;
 }
 
-.phoneLogin button {
-  border-radius: 50rpx;
-  border: 1rpx solid #70e500;
-  background-color: #fff;
-  color: #70e500;
+.g-flex-v-bottom {
+  -webkit-box-align  : end;
+  -webkit-align-items: flex-end;
+  align-items        : flex-end;
 }
 
-/*蒙板*/
-.cover{
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 9000;
-  background: rgba(0, 0, 0, 0.6);
-  opacity: 0.7;
+.g-flex-between {
+  -webkit-box-pack       : justify;
+  -webkit-justify-content: space-between;
+  justify-content        : space-between;
+}
+
+.g-flex-end {
+  -webkit-box-pack       : end;
+  -webkit-justify-content: flex-end;
+  justify-content        : flex-end;
+}
+
+.g-flex-v-between {
+  -webkit-align-content: space-between;
+  align-content        : space-between;
 }
 
 
-/* bar相关 */
-.marginTopBottom {
-  margin-top: 20rpx;
-  margin-bottom: 30rpx;
+.g-flex-c1 {
+  -webkit-box-flex: 1;
+  -webkit-flex    : 1;
+  flex            : 1;
 }
-
-.barTitle {
-  width: 100%;
-  height: 56rpx;
-  padding: 20rpx 0rpx;
+.g-block{
+  display: block;
+}
+.g-inline-block{
+  display: inline-block;
+}
+.g-ta-rt{
+  text-align: right;
+}
+.g-ta-lt{
+  text-align: left;
+}
+.g-ta-ct{
   text-align: center;
 }
+.g-fw-bold{
+  font-weight: bold;
+}
+/* ------布局end------*/
+/* ------colorstart------*/
+.g-text-primary{
+  color: #272636;
+}
+.g-text-grey{
+  color: #96989C;
+}
+/* ------colorend------*/
+/* ------定位start------*/
+.g-pos-rt {
+  position: relative;
+}
 
-.Title-left {
+.g-pos-as {
+  position: absolute;
+}
+
+.g-pos-fx {
+  position: fixed;
+}
+
+.g-w100 {
+  width: 100%;
+}
+
+.g-h100 {
+  height: 100%;
+}
+
+/* ------定位end------*/
+
+/* ------浮动end------*/
+.g-clearfix::after {
+  display: block;
+  clear: both;
+  content: "";
+}
+.g-float-lf{
   float: left;
-  font-size: 37rpx;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  font-weight: 800;
-  color: #333;
+}
+.g-float-rh{
+  float: right;
+}
+/* ------浮动end------*/
+/* ------按钮start------*/
+.g-button-reset {
+  position: absolute;
+  padding: 0;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  opacity: 0;
+  z-index: 1;
+}
+.g-button-primary{
+  position: relative;
+  height: 84rpx;
+  line-height: 84rpx;
+  border-radius: 42rpx;
+  border: 1px solid #E62F3D;
+  background-color: #E62F3D;
+  box-sizing: border-box;
+  color: #ffffff;
+  text-align: center;
+  font-size: 32rpx;
+}
+.g-button-inverse{
+  position: relative;
+  height: 84rpx;
+  line-height: 84rpx;
+  border-radius: 42rpx;
+  border: 1px solid #272636;
+  background-color: #ffffff;
+  color: #272636;
+  text-align: center;
+  box-sizing: border-box;
+  font-size: 32rpx;
+}
+/* ------按钮end------*/
+.g-input-placeholder{
+  color: #b2b2b2;
+}
+.g-border-bottom{
+  border-bottom: 1px solid #ececec;
 }
 
-.Title-right {
-  float: right;
-  font-size: 26rpx;
-  color: #aaa;
+/* 外边距 start */
+.g-mt20{
+  margin-top: 20rpx;
 }
+.g-mt40{
+  margin-top: 40rpx;
+}
+.g-mt60{
+  margin-top: 60rpx;
+}
+.g-mt80{
+  margin-top: 80rpx;
+}
+.g-mb20{
+  margin-bottom: 20rpx;
+}
+.g-mb40{
+  margin-bottom: 40rpx;
+}
+.g-mb60{
+  margin-bottom: 60rpx;
+}
+.g-mb80{
+  margin-bottom: 80rpx;
+}
+.g-mr20{
+  margin-right: 20rpx;
+}
+.g-mr40{
+  margin-right: 40rpx;
+}
+.g-mr60{
+  margin-right: 60rpx;
+}
+.g-mr80{
+  margin-right: 80rpx;
+}
+.g-ml20{
+  margin-left: 20rpx;
+}
+.g-ml40{
+  margin-left: 40rpx;
+}
+.g-ml60{
+  margin-left: 60rpx;
+}
+.g-ml80{
+  margin-left: 80rpx;
+}
+.g-m20{
+  margin: 20rpx;
+}
+.g-m40{
+  margin: 40rpx;
+}
+.g-m60{
+  margin: 60rpx;
+}
+.g-m80{
+  margin: 80rpx;
+}
+/* 外边距 end*/
+/* 内边距 start*/
+.g-pt20{
+  padding-top: 20rpx;
+}
+.g-pt40{
+  padding-top: 40rpx;
+}
+.g-pt60{
+  padding-top: 60rpx;
+}
+.g-pt80{
+  padding-top: 80rpx;
+}
+.g-pb20{
+  padding-bottom: 20rpx;
+}
+.g-pb40{
+  padding-bottom: 40rpx;
+}
+.g-pb60{
+  padding-bottom: 60rpx;
+}
+.g-pb80{
+  padding-bottom: 80rpx;
+}
+.g-pr20{
+  padding-right: 20rpx;
+}
+.g-pr40{
+  padding-right: 40rpx;
+}
+.g-pr60{
+  padding-right: 60rpx;
+}
+.g-pr80{
+  padding-right: 80rpx;
+}
+.g-pl20{
+  padding-left: 20rpx;
+}
+.g-pl40{
+  padding-left: 40rpx;
+}
+.g-pl60{
+  padding-left: 60rpx;
+}
+.g-pl80{
+  padding-left: 80rpx;
+}
+.g-p20{
+  padding: 20rpx;
+}
+.g-p40{
+  padding: 40rpx;
+}
+.g-p60{
+  padding: 60rpx;
+}
+.g-p80{
+  padding: 80rpx;
+}
+/* 内边距 end*/

@@ -1,4 +1,13 @@
+page {
+  font-family: "PingFang SC", miui, system-ui, -apple-system, BlinkMacSystemFont,
+    Helvetica Neue, Helvetica, sans-serif;
+  font-size: 24rpx;
+  color: #272636;
+}
+button::after {
+  border: none;
+}
 /* 引入icon样式库 */
-@import '/style/icons.wxss';
+/* @import '/style/icons.wxss'; */
 @import '/style/common.wxss';
 @import '/style/color.wxss';
