@@ -92,14 +92,7 @@
   font-weight: bold;
 }
 /* ------布局end------*/
-/* ------colorstart------*/
-.g-text-primary{
-  color: #272636;
-}
-.g-text-grey{
-  color: #96989C;
-}
-/* ------colorend------*/
+
 /* ------定位start------*/
 .g-pos-rt {
   position: relative;
@@ -175,9 +168,7 @@
   font-size: 32rpx;
 }
 /* ------按钮end------*/
-.g-input-placeholder{
-  color: #b2b2b2;
-}
+
 .g-border-bottom{
   border-bottom: 1px solid #ececec;
 }
@@ -306,3 +297,23 @@
   padding: 80rpx;
 }
 /* 内边距 end*/
+.g-ellipsis2 {
+  display: -webkit-box;
+  height: 80rpx;
+  overflow: hidden;
+  line-height: 40rpx;
+  text-overflow: ellipsis;
+  white-space: normal;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.g-ellipsis {
+  display: -webkit-box;
+  height: 40rpx;
+  overflow: hidden;
+  line-height: 40rpx;
+  text-overflow: ellipsis;
+  white-space: normal;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}

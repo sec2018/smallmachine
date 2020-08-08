@@ -7,17 +7,14 @@
 .bg-gray{
   background-color: #eeeeee;
 }
-
-/* 字体颜色 */
-.text-black{
-  color: #181818;
+.g-input-placeholder{
+  color: #b2b2b2;
 }
-.text-red{
-  color: #f00;
+/* ------colorstart------*/
+.g-text-primary{
+  color: #272636;
 }
-.text-orange{
-  color: orange;
+.g-text-grey{
+  color: #96989C;
 }
-.text-gray{
-  color: #aaaaaa;
-}
+/* ------colorend------*/
