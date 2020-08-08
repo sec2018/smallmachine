@@ -2,9 +2,9 @@
  * 本文件主要是工具类函数
  */
 // let apiRoot = 'http://localhost:8050/itwx';
-// let apiRoot = 'https://letsmodel.cn:8050/itwx';
+let apiRoot = 'https://letsmodel.cn:8050/itwx';
 let apiPythonRoot = 'https://micro-service.online:8051/api';
-let apiRoot = 'http://localhost:8050/itwx';
+// let apiRoot = 'http://localhost:8050/itwx';
 
  /*
   自己基于wx.request封装的一个请求函数（粗陋封装各位不要笑话）

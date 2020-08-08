@@ -2,13 +2,13 @@
 <view class="container">
   现场照片
   <!-- <uploadImages bindmyevent="myEventListener" count='{{countPic}}' showUrl="{{showImgUrl}}" uploadUrl="{{uploadImgUrl}}"></uploadImages> -->
-
+<icon type="success" size="40" color="red"/>
   <view class="uploadContainer">
   <!-- 图片预览区域 -->
     <view class="imgContainer">
       <view class='imageInfo' wx:for="{{imgs}}" wx:for-item="item"  wx:key="*this">
           <image src="{{item}}"data-index="{{index}}"mode="aspectFill" bindtap="previewImg">
-                    <icon type='cancel' class="delete-btn" data-index="{{index}}" catchtap="deleteImg"></icon>
+                    <icon type='cancel' size="23" class="delete-btn" data-index="{{index}}" catchtap="deleteImg"></icon>
           </image>
       </view>
     </view>

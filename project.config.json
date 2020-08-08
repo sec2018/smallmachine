@@ -103,6 +103,35 @@
 					"id": -1,
 					"name": "搜索页",
 					"pathName": "pages/search/search",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/xjorder/xjorder",
+					"pathName": "pages/xjorder/xjorder",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/main/main",
+					"pathName": "pages/main/main",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/singlecompany/singlecompany",
+					"pathName": "pages/singlecompany/singlecompany",
+					"query": "num=20200805124205",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/user/user",
+					"pathName": "pages/user/user",
+					"query": "num=20200805124205",
 					"scene": null
 				}
 			]
