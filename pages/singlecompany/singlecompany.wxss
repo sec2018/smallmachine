@@ -1,1 +1,24 @@
 /* pages/singlecompany/singlecompany.wxss */
+.name{
+  font-size: 40rpx;
+  margin: 30rpx;
+}
+.name-img{
+  width: 100%;
+  margin-bottom: 30rpx;
+}
+.list-li{
+  padding: 0 30rpx 30rpx;
+  line-height: rpx2(42);
+  font-size: 30rpx;
+}
+.item-con{
+  margin: 0 30rpx 30rpx;
+  border: 1px solid #dcdcdc;
+  border-bottom: none;
+}
+.item{
+  border-bottom: 1px solid #dcdcdc;
+  padding: 30rpx 20rpx;
+  font-size: 28rpx;
+}
