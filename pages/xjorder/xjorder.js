@@ -8,7 +8,28 @@ Page({
   data: {
     imgs: [],
     inputDisable:false,
-    chkpoint:{},
+    chkpoint:[
+      {
+        content:'检查水泵运行声音是否正常检查水泵运行声音是否正常',
+        result: ''
+      },
+      {
+        content:'配电柜电流，频率显示状态',
+        result: ''
+      },
+      {
+        content:'各连接螺栓是否正常',
+        result: ''
+      },
+      {
+        content:'泵体及连接管道是否有漏水现象',
+        result: ''
+      },
+      {
+        content:'检查压力表是都在正常范围',
+        result: ''
+      }
+    ],
     countPic:9,//上传图片最大数量
     showImgUrl: "", //路径拼接，一般上传返回的都是文件名，
     uploadImgUrl:''//图片的上传的路径

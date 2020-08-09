@@ -1,1 +1,62 @@
 /* pages/xjdetail/xjdetail.wxss */
+.page-bg{
+  background: #313155;
+  padding: 30rpx 30rpx;
+  color: #ffffff;
+}
+.name{
+  font-size: 34rpx;
+}
+.head-list{
+  background: #23233f;
+  padding: 30rpx 20rpx;
+  font-size: 26rpx;
+  border-radius: 8rpx;
+}
+.head-list-name{
+  font-size: 30rpx;
+}
+.head-list-left{
+  width: 120rpx;
+  font-size: 24rpx;
+  color: #868080;
+}
+.hd-block{
+  padding: 40rpx;
+  margin: 20rpx 0 0;
+  border-radius: 8rpx;
+  background: #ffffff;
+}
+.hd-name{
+  font-size: 28rpx;
+  margin-bottom: 10rpx;
+}
+.hd-plus{
+  font-size: 60rpx;
+}
+.table-name{
+  margin: 30rpx 30rpx 0;
+  background: #dcdcdc;
+  padding: 20rpx 0;
+}
+.table-con{
+  margin: 0 30rpx 30rpx;
+  border: 1px solid #dcdcdc;
+  border-bottom: none;
+}
+.table-tr{
+  padding: 0 10rpx;
+  font-size: 24rpx;
+  border-bottom: 1px solid #dcdcdc;
+}
+.table-td{
+  line-height: 60rpx;
+  height: 60rpx;
+}
+.table-right-border{
+  border-right: 1px solid #dcdcdc;
+  margin-right: 12rpx;
+}
+.table-td-short{
+  width: 150rpx;
+}

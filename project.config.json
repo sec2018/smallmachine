@@ -133,6 +133,13 @@
 					"pathName": "pages/user/user",
 					"query": "num=20200805124205",
 					"scene": null
+				},
+				{
+					"id": 11,
+					"name": "pages/xjdetail/xjdetail",
+					"pathName": "pages/xjdetail/xjdetail",
+					"query": "id=1",
+					"scene": null
 				}
 			]
 		}

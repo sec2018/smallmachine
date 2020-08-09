@@ -25,9 +25,9 @@ Page({
       that.setData({
         company_num: options.num
       })
-    let dataParam = {};
-    dataParam.company_num = options.num;
-    utils.pythonRequest({
+      let dataParam = {};
+      dataParam.company_num = options.num;
+      utils.pythonRequest({
       url: '/getComEqu/',
       data: dataParam,
       methods:'POST',
@@ -104,8 +104,9 @@ Page({
 
   },
   XjAction: function (e) { 
+    let id = e.currentTarget.dataset.index;
     wx.navigateTo({
-      url: '../xjdetail/xjdetail'
+      url: '../xjdetail/xjdetail?id='+id
     })
   },
 })

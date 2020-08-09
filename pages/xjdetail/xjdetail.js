@@ -5,17 +5,64 @@ Page({
    * 页面的初始数据
    */
   data: {
-    historyinfo:[],
-    lasthistoryinfo:{},
-    chkpoint:{},
-    equipment:{}
+    id:null,
+    historyinfo:[
+      {
+        time: '2020/08/09 18:45',
+        formname: '设备巡检单',
+        xjpersonname: '张三',
+        xjresult: '正常'
+      }
+    ],
+    lasthistoryinfo:{
+      time: '2020/08/09 18:45',
+      formname: '设备巡检单',
+      xjpersonname: '张三',
+      xjresult: '正常'
+    },
+    chkpoint:[
+      {
+        content:'检查水泵运行声音是否正常检查水泵运行声音是否正常',
+        method: '耳听耳听耳听耳听耳听耳听耳听'
+      },
+      {
+        content:'配电柜电流，频率显示状态',
+        method: '目视'
+      },
+      {
+        content:'各连接螺栓是否正常',
+        method: '目视，手摸'
+      },
+      {
+        content:'泵体及连接管道是否有漏水现象',
+        method: '目视'
+      },
+      {
+        content:'检查压力表是都在正常范围',
+        method: '目视'
+      }
+    ],
+    equipment:{
+      equname:'2#循环泵',
+      type:'SLR150-152A',
+      position:'换热站',
+      keepperson:'张三',
+      phonenum:'13256487562',
+      startdate:'2019-12-03'
+
+    }
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+    var that = this;
+    if(options.id != null && !options.username){
+      that.setData({
+        id: options.id
+      })
+    }
   },
 
   /**
