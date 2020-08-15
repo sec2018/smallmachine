@@ -23,39 +23,29 @@
     <text class="iconfont iconfontxuanxiang_yixuanze item-radio-icon item-radio-icon-active"></text>
     <text class="iconfont iconfontxuanxiang_weixuanze item-radio-icon"></text>异常</view>
   <view class="item-name g-fw-bold">现场照片</view>
-    <view class="uploadContainer">
-      <!-- 图片预览区域 -->
-      <view class="imgContainer">
-        <view class='imageInfo' wx:for="{{imgs}}" wx:for-item="item"  wx:key="*this">
-            <image src="{{item}}"data-index="{{index}}"mode="aspectFill" bindtap="previewImg">
-                      <icon type='cancel' size="23" class="delete-btn" data-index="{{index}}" catchtap="deleteImg"></icon>
-            </image>
-        </view>
-      </view>
-      <!-- 备注 -->
-      <view class="page-section">
-        <view class="weui-cells__title note">提示:图片最多上传8张,点击X可以取消上传图片</view>
-        <view class="weui-cells weui-cells_after-title">
-          <view class="weui-cell weui-cell_input noteContent">
-            <textarea disabled="{{inputDisable}}" bindinput="checkInput" placeholder="异常情况说明" maxlength="101" placeholder-style="color:grey;"/>
-          </view>
-        </view>
-      </view>
-      <view class="g-m40">
-        <button class="g-button-primary user-btn" bindtap="chooseImg" type='primary'>拍照  / 上传</button>
-      </view>
-      <view>
-        <view>记录人信息</view>
-        <view>记录人</view>
-        <view>地址</view>
-      </view>
-      <view class="g-m40">
-        <button class="g-button-primary user-btn" bindtap="sureUpload" type='warn'>提交</button>
-      </view>
-      <!-- <button class="upload-img-btn" bindtap="chooseImg" type='primary'>拍照  / 上传</button>
-      <button class="upload-img-btn" bindtap="sureUpload" type='warn'>提交</button> -->
+  <!-- 图片预览区域 -->
+  <view class="img-container g-flex g-flex-wap">
+    <view class='img-info' wx:for="{{imgs}}" wx:for-item="item"  wx:key="*this">
+        <image src="{{item}}"data-index="{{index}}"mode="aspectFill" bindtap="previewImg"></image>
+        <view class="img-delete iconfont iconfontminus-circle" data-index="{{index}}" catchtap="deleteImg"></view>
     </view>
+    <view class="img-info img-upload g-text-grey g-ta-ct" wx:if="{{imgs.length<9}}" bindtap="chooseImg">
+      <view class="iconfont iconfontxiangji img-upload-icon"></view>
+      <view>{{imgs.length}}/9</view>
+    </view>
+  </view>
+  <!-- 备注 -->
+  <view class="item-name g-fw-bold">异常情况说明</view>
+  <view class="item-textarea-con">
+    <textarea class="item-textarea" disabled="{{inputDisable}}" bindinput="checkInput" placeholder="如发现异常，请填写原因" maxlength="101" placeholder-class="g-input-placeholder"/>
+  </view>
+  <view class="item-name g-fw-bold">记录人信息</view>
+  <view class="item-btn">记录人</view>
+  <view class="item-name g-fw-bold">地址</view>
+  <view class="item-btn item-btn-location">
+  <text class="iconfont iconfontweizhi"></text>点击获取地理位置</view>
   
-  <!-- <uploadImages bindmyevent="myEventListener" count='{{countPic}}' showUrl="{{showImgUrl}}" uploadUrl="{{uploadImgUrl}}"></uploadImages> -->
-  <!-- <icon type="success" size="40" color="red"/> -->
+  <view class="g-mt40 g-mb40">
+    <button class="g-button-primary user-btn" bindtap="sureUpload" type='warn'>提交</button>
+  </view>
 </view>

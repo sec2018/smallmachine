@@ -1,11 +1,11 @@
 @font-face {
   font-family: 'iconfont';  /* project id 1994892 */
-  src: url('//at.alicdn.com/t/font_1994892_mg3juwq7a17.eot');
-  src: url('//at.alicdn.com/t/font_1994892_mg3juwq7a17.eot?#iefix') format('embedded-opentype'),
-  url('//at.alicdn.com/t/font_1994892_mg3juwq7a17.woff2') format('woff2'),
-  url('//at.alicdn.com/t/font_1994892_mg3juwq7a17.woff') format('woff'),
-  url('//at.alicdn.com/t/font_1994892_mg3juwq7a17.ttf') format('truetype'),
-  url('//at.alicdn.com/t/font_1994892_mg3juwq7a17.svg#iconfont') format('svg');
+  src: url('//at.alicdn.com/t/font_1994892_2pxrd4pfamb.eot');
+  src: url('//at.alicdn.com/t/font_1994892_2pxrd4pfamb.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_1994892_2pxrd4pfamb.woff2') format('woff2'),
+  url('//at.alicdn.com/t/font_1994892_2pxrd4pfamb.woff') format('woff'),
+  url('//at.alicdn.com/t/font_1994892_2pxrd4pfamb.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_1994892_2pxrd4pfamb.svg#iconfont') format('svg');
 }
 .iconfont {
   font-family: "iconfont" !important;
@@ -13,6 +13,14 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.iconfontweixin:before {
+  content: "\e628";
+}
+
+.iconfontweizhi:before {
+  content: "\e6f8";
 }
 
 .iconfontduihaocheckmark17:before {
