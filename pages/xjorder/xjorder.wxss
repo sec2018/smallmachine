@@ -112,6 +112,10 @@
 .item-btn-location{
   border: none;
 }
-
+.item-btn-address{
+  line-height: 40rpx;
+  margin: 0 20rpx;
+  color: #272636;
+}
 
 

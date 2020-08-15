@@ -42,8 +42,13 @@
   <view class="item-name g-fw-bold">记录人信息</view>
   <view class="item-btn">记录人</view>
   <view class="item-name g-fw-bold">地址</view>
-  <view class="item-btn item-btn-location">
+  <view class="item-btn item-btn-location" bindtap="getLoaction" wx:if="{{!address}}">
   <text class="iconfont iconfontweizhi"></text>点击获取地理位置</view>
+  <view class="item-btn item-btn-location g-flex"  wx:else>
+    <view><text class="iconfont iconfontweizhi"></text></view>
+    <view class="g-flex-c1 item-btn-address">{{address}}</view>
+    <view bindtap="getLoaction">重新获取</view>
+  </view>
   
   <view class="g-mt40 g-mb40">
     <button class="g-button-primary user-btn" bindtap="sureUpload" type='warn'>提交</button>

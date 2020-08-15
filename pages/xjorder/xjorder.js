@@ -1,6 +1,7 @@
 // pages/xjorder/xjorder.js
-var utils = require('../../utils/utils.js');
-
+const utils = require('../../utils/utils.js');
+const LocUtil = require('../../utils/location.js');
+let isLocationClick = true;
 Page({
   /**
    * 页面的初始数据
@@ -36,6 +37,10 @@ Page({
         result: ''
       }
     ],
+    location: {
+
+    },
+    address: '1234',
     countPic:9,//上传图片最大数量
     showImgUrl: "", //路径拼接，一般上传返回的都是文件名，
     uploadImgUrl:''//图片的上传的路径
@@ -52,6 +57,22 @@ Page({
    */
   onLoad: function (options) {
 
+  },
+  getLoaction(){
+    const _this = this;
+    if (!isLocationClick) return;
+    isLocationClick = false;
+    LocUtil.getLocation(function (data) {
+      console.log(data);
+      isLocationClick = true;
+      _this.setData({
+        location: {
+          latitude: data[0].latitude,
+          longitude: data[0].longitude
+        },
+        address: data[0].regeocodeData.formatted_address
+      })
+    })
   },
   // 对或错
   handleErrOrSuccess (e){
@@ -117,30 +138,52 @@ Page({
   },
   //选择图片
   chooseImg: function (e) {
-    var that = this;
-    var imgs = this.data.imgs;
+    const that = this;
+    const limitMsg = () => wx.showToast({ title: '最多只能上传9张图片', icon: 'none' })
+    let imgs = this.data.imgs;
+    if (imgs.length >= 9) {
+      limitMsg()
+      return
+    }
     wx.chooseImage({
-      count: 9, // 默认9
+      count: 9-imgs.length, // 默认9
       sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
       sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
       success: function (res) {
         // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
-        var tempFilePaths = res.tempFilePaths;
-        var imgs = that.data.imgs;
-        // console.log(tempFilePaths + '----');
-        for (var i = 0; i < tempFilePaths.length; i++) {
-          if (imgs.length >= 9) {
-            that.setData({
-              imgs: imgs
-            });
-            return false;
-          } else {
-            imgs.push(tempFilePaths[i]);
-          }
+        let tempFilePaths = res.tempFilePaths;
+        let imgs = that.data.imgs;
+        if (tempFilePaths.length + imgs.length > 9) {
+          limitMsg()
+          return
         }
-        // console.log(imgs);
-        that.setData({
-          imgs: imgs
+        // console.log(tempFilePaths + '----');
+        for (let i = 0; i < tempFilePaths.length; i++) {
+          imgs.push(tempFilePaths[i]);
+        }
+        wx.showLoading({ title: '上传中' })
+        tempFilePaths.forEach((path, index) => {
+          utils.fileRequest({
+            url: '/monitor/xjinfo/uploadimg',
+            filePath: path,
+            success: function (res) {
+              console.log(res);
+              if (res.data.code == 200) {
+                let imageUrl = 'https://dss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1141259048,554497535&fm=26&gp=0.jpg'; // 接口返回的图片地址
+                that.setData({ imgs: [...imgs, imageUrl] });
+                if (index === tempFilePaths.length - 1) {
+                  wx.hideLoading();
+                }
+              }
+            },
+            fail: function (res) {
+              wx.hideLoading();
+              wx.showToast({
+                title: res.msg || '系统繁忙，请稍后重试',
+                icon: 'none'
+              });
+            }
+          })
         });
       }
     });

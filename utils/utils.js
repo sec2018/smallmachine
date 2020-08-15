@@ -55,7 +55,7 @@ let fileRequest = function(args = {url:'', filePath:'', success:function(){},fai
           args.success(res)
         }else{
           // 请求失败执行回调函数
-          args.fail()
+          args.fail(res)
         }
       },
   })
