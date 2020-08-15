@@ -119,19 +119,8 @@ Page({
   chooseImg: function (e) {
     var that = this;
     var imgs = this.data.imgs;
-    if (imgs.length >= 8) {
-      this.setData({
-        lenMore: 1
-      });
-      setTimeout(function () {
-        that.setData({
-          lenMore: 0
-        });
-      }, 2500);
-      return false;
-    }
     wx.chooseImage({
-      count: 8, // 默认9
+      count: 9, // 默认9
       sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
       sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
       success: function (res) {
@@ -140,7 +129,7 @@ Page({
         var imgs = that.data.imgs;
         // console.log(tempFilePaths + '----');
         for (var i = 0; i < tempFilePaths.length; i++) {
-          if (imgs.length >= 8) {
+          if (imgs.length >= 9) {
             that.setData({
               imgs: imgs
             });
@@ -194,7 +183,7 @@ Page({
     var imgList = this.data.imgs;
     if(imgList.length>8){
       wx.showToast({
-        title: '上传的图片不能超过8张',
+        title: '上传的图片不能超过9张',
         icon: 'none',
         duration: 2000
       })
