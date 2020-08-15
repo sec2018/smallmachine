@@ -158,9 +158,6 @@ Page({
           return
         }
         // console.log(tempFilePaths + '----');
-        for (let i = 0; i < tempFilePaths.length; i++) {
-          imgs.push(tempFilePaths[i]);
-        }
         wx.showLoading({ title: '上传中' })
         tempFilePaths.forEach((path, index) => {
           utils.fileRequest({
