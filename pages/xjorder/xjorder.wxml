@@ -1,29 +1,28 @@
 <!--pages/xjorder/xjorder.wxml-->
-<view class="container">
-  <view>
-    <view>设备巡检单</view>
-    <view>请填写巡检记录</view>
+<view class="xjorder-page">
+  <view class="ui-text-primary name g-fw-bold">设备巡检单</view>
+  <view class="g-text-grey">请填写巡检记录</view>
+  <view class="item-name g-fw-bold">
+    正常的打“✔”，异常的打“×”  *
   </view>
-  <view>
-    <view>
-      正常的打“✔”，异常的打“×”  *
-    </view>
-    <view>
-       <view class="table-con">
-        <view class="g-flex g-flex-v-center table-tr" wx:for="{{chkpoint}}" wx:key="index" data-index="{{index}}" bindtap='XjAction'>
-          <view class="g-flex-c1 table-td g-ellipsis table-right-border">{{item.content}}</view>
-          <view class=" table-td g-ellipsis table-td-short">{{item.method}}</view>
-        </view>
+  <view class="table-con">
+    <view class="g-flex g-flex-v-center table-tr" wx:for="{{chkpoint}}" wx:key="index" data-index="{{index}}" bindtap='XjAction'>
+      <view class="g-flex-c1 table-td g-ellipsis table-right-border">{{item.content}}</view>
+      <view class=" table-td table-td-short">
+        <text class="iconfont iconfontduihaocheckmark17 table-td-icon g-text-grey {{item.result === '1' ? 'table-success':'' }}" bindtap="handleErrOrSuccess" data-index="{{index}}" data-type="1"></text>
+        <text class="iconfont iconfontcuowu table-td-icon g-text-grey {{item.result === '2' ? 'table-err': ''}}"  bindtap="handleErrOrSuccess" data-index="{{index}}" data-type="2"></text>
       </view>
     </view>
   </view>
-  <view>
-    <view>巡检结果</view>
-    <view>正常</view>
-    <view>异常</view>
+  <view class="item-name g-fw-bold">巡检结果</view>
+  <view class="item-radio g-mb20 {{xjResult==='1' ? 'item-radio-active' : ''}}" data-type="1" bindtap="handleXjResult">
+    <text class="iconfont iconfontxuanxiang_yixuanze item-radio-icon item-radio-icon-active"></text>
+    <text class="iconfont iconfontxuanxiang_weixuanze item-radio-icon"></text>正常
   </view>
-  <view>
-    <view>现场照片</view>
+  <view class="item-radio  {{xjResult==='2' ? 'item-radio-active' : ''}}" data-type="2" bindtap="handleXjResult">
+    <text class="iconfont iconfontxuanxiang_yixuanze item-radio-icon item-radio-icon-active"></text>
+    <text class="iconfont iconfontxuanxiang_weixuanze item-radio-icon"></text>异常</view>
+  <view class="item-name g-fw-bold">现场照片</view>
     <view class="uploadContainer">
       <!-- 图片预览区域 -->
       <view class="imgContainer">
@@ -56,7 +55,6 @@
       <!-- <button class="upload-img-btn" bindtap="chooseImg" type='primary'>拍照  / 上传</button>
       <button class="upload-img-btn" bindtap="sureUpload" type='warn'>提交</button> -->
     </view>
-  </view>
   
   <!-- <uploadImages bindmyevent="myEventListener" count='{{countPic}}' showUrl="{{showImgUrl}}" uploadUrl="{{uploadImgUrl}}"></uploadImages> -->
   <!-- <icon type="success" size="40" color="red"/> -->

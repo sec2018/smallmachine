@@ -8,14 +8,15 @@ Page({
   data: {
     imgs: [],
     inputDisable:false,
+    xjResult: '', // '1' 正常 '2' 异常
     chkpoint:[
       {
         content:'检查水泵运行声音是否正常检查水泵运行声音是否正常',
-        result: ''
+        result: 1
       },
       {
         content:'配电柜电流，频率显示状态',
-        result: ''
+        result: 2
       },
       {
         content:'各连接螺栓是否正常',
@@ -47,7 +48,20 @@ Page({
   onLoad: function (options) {
 
   },
-
+  // 对或错
+  handleErrOrSuccess (e){
+    let {index, type} = e.currentTarget.dataset;
+    this.setData({
+      [`chkpoint[${index}].result`]: type
+    })
+  },
+  // radio
+  handleXjResult (e){
+    let {type} = e.currentTarget.dataset;
+    this.setData({
+      xjResult: type
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

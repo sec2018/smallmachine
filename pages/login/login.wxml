@@ -1,10 +1,10 @@
 <view class="login">
   <view>
     <image class="login-logo" mode="aspectFit" src="/image/logo.png" />
-    <view class="login-name g-ta-ct">智能设备云员工端</view>
+    <view class="login-name g-ta-ct">爱点检</view>
   </view>
   <input class="login-input g-border-bottom" placeholder-class="g-input-placeholder" placeholder="请输入用户名" bindinput="onInput" data-type="name" />
   <input class="login-input g-border-bottom g-mt40" placeholder-class="g-input-placeholder" password placeholder="请输入密码" bindinput="onInput" data-type="password" />
   <view class="g-button-primary g-mt80" bindtap="onLogin">登录</view>
-  <view class="g-ta-ct g-mt40 g-text-grey">请使用智能设备云系统账号密码登录</view>
+  <view class="g-ta-ct g-mt40 g-text-grey">请使用爱点检系统账号密码登录</view>
 </view>

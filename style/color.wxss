@@ -17,4 +17,7 @@
 .g-text-grey{
   color: #96989C;
 }
+.ui-text-primary{
+  color: #00ff00;
+}
 /* ------colorend------*/
