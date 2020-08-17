@@ -40,7 +40,7 @@
     <textarea class="item-textarea" disabled="{{inputDisable}}" bindinput="checkInput" placeholder="如发现异常，请填写原因" maxlength="101" placeholder-class="g-input-placeholder"/>
   </view>
   <view class="item-name g-fw-bold">记录人信息</view>
-  <view class="item-btn">记录人</view>
+  <view class="item-btn">{{username}}</view>
   <view class="item-name g-fw-bold">地址</view>
   <view class="item-btn item-btn-location" bindtap="getLoaction" wx:if="{{!address}}">
   <text class="iconfont iconfontweizhi"></text>点击获取地理位置</view>

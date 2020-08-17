@@ -13,7 +13,8 @@ Page({
     id:null,
     company_num:null,
     username:null,
-    imgurl: imgurl
+    imgurl: imgurl,
+    equips:[]
   },
 
   /**
@@ -28,30 +29,30 @@ Page({
       let dataParam = {};
       dataParam.company_num = options.num;
       utils.pythonRequest({
-      url: '/getComEqu/',
-      data: dataParam,
-      methods:'POST',
-      success:function(res){
-          console.log(res);
-          if(res.data.code == 200){
-            that.setData({
-              company: res.data.data.company.fields, //请求结果数据
-            })
-          }else{
-              // 登录
-              return;
+        url: '/getComEqu/',
+        data: dataParam,
+        methods:'POST',
+        success:function(res){
+            console.log(res);
+            if(res.data.code == 200){
+              that.setData({
+                company: res.data.data.company.fields, //请求结果数据
+                equips: res.data.data.equ
+              })
+            }else{
+                // 登录
+                return;
+            }
+        },
+        fail:function(res){
+            // 登录
+            return;
           }
-      },
-      fail:function(res){
-          // 登录
-          return;
-        }
       });
     }else{
       that.setData({
         username: options.username
       })
-
     }
   },
 
@@ -104,7 +105,7 @@ Page({
 
   },
   XjAction: function (e) { 
-    let id = e.currentTarget.dataset.index;
+    let id = e.currentTarget.dataset.item.pk;
     wx.navigateTo({
       url: '../xjdetail/xjdetail?id='+id
     })

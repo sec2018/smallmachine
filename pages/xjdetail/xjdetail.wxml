@@ -1,7 +1,7 @@
 <!--pages/xjdetail/xjdetail.wxml-->
 <view>
   <view class="page-bg">
-    <view class="name g-ta-ct g-fw-bold g-mb20">{{id}}#设备</view>
+    <view class="name g-ta-ct g-fw-bold g-mb20">{{equipment.name}}</view>
     <view class="head-list">
       <view class="g-flex g-flex-v-center">
         <view class="head-list-name g-flex-c1">数据汇总</view>
@@ -52,31 +52,33 @@
     <view class="table-con">
       <view class="g-flex g-flex-v-center table-tr">
         <view class=" table-td g-ellipsis table-td-short table-right-border">名称</view>
-        <view class="g-flex-c1 table-td g-ellipsis">{{equipment.equname}}</view>
+        <view class="g-flex-c1 table-td g-ellipsis">{{equipment.name}}</view>
       </view>
       <view class="g-flex g-flex-v-center table-tr">
         <view class=" table-td g-ellipsis table-td-short table-right-border">型号</view>
         <view class="g-flex-c1 table-td g-ellipsis">{{equipment.type}}</view>
       </view>
       <view class="g-flex g-flex-v-center table-tr">
-        <view class=" table-td g-ellipsis table-td-short table-right-border">位置</view>
-        <view class="g-flex-c1 table-td g-ellipsis">{{equipment.position}}</view>
+        <view class=" table-td g-ellipsis table-td-short table-right-border">制造商</view>
+        <view class="g-flex-c1 table-td g-ellipsis">{{equipment.vendor}}</view>
       </view>
       <view class="g-flex g-flex-v-center table-tr">
-        <view class=" table-td g-ellipsis table-td-short table-right-border">设备保管人</view>
-        <view class="g-flex-c1 table-td g-ellipsis">{{equipment.keepperson}}</view>
+        <view class=" table-td g-ellipsis table-td-short table-right-border">制造商型号</view>
+        <view class="g-flex-c1 table-td g-ellipsis">{{equipment.vendor_type}}</view>
       </view>
       <view class="g-flex g-flex-v-center table-tr">
-        <view class=" table-td g-ellipsis table-td-short table-right-border">联系方式</view>
-        <view class="g-flex-c1 table-td g-ellipsis">{{equipment.phonenum}}</view>
-      </view>
-      <view class="g-flex g-flex-v-center table-tr">
-        <view class=" table-td g-ellipsis table-td-short table-right-border">启用日期</view>
-        <view class="g-flex-c1 table-td g-ellipsis">{{equipment.startdate}}</view>
+        <view class=" table-td g-ellipsis table-td-short table-right-border">技术类别</view>
+        <view class="g-flex-c1 table-td g-ellipsis">{{equipment.technical}}</view>
       </view>
     </view>
   </view>
   <view class="g-ta-ct g-fw" style="margin-bottom:10rpx">
     上海电气集团股份有限公司中央研究院
+  </view>
+  <view class="item-con">
+    <view class="item g-flex g-flex-v-center" wx:for="{{equips}}" wo:for-item='company' wx:key="pk" data-item= "{{item}}" data-id="{{item.pk}}" bindtap='XjAction'>
+      <view class="g-flex-c1 g-ellipsis">{{item.fields.name}}设备</view>
+      <view class="iconfont iconfontangle-right g-text-gray"></view>
+    </view>
   </view>
 </view>

@@ -1,11 +1,16 @@
 // pages/xjdetail/xjdetail.js
+const utils = require('../../utils/utils.js');
+
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    id:null,
+    equid:null,
+    chkplanlist:[],
+    firstchkplan:{},
     historyinfo:[
       {
         time: '2020/08/09 18:45',
@@ -49,7 +54,6 @@ Page({
       keepperson:'张三',
       phonenum:'13256487562',
       startdate:'2019-12-03'
-
     }
   },
 
@@ -60,8 +64,77 @@ Page({
     var that = this;
     if(options.id != null && !options.username){
       that.setData({
-        id: options.id
+        equid: options.id
       })
+      let dataParam = {};
+      dataParam.equ_id = options.id;
+      utils.pythonRequest({
+        url: '/getEquInfo/',
+        data: dataParam,
+        methods:'POST',
+        success:function(res){
+            console.log(res);
+            if(res.data.code == 200){
+              that.setData({
+                equipment: res.data.data, //请求结果数据
+              })
+
+              let chkplanlistParam = {};
+              chkplanlistParam.equ_num = res.data.data.num;
+              utils.pythonRequest({
+                url: '/queryChkPlanList/',
+                data: chkplanlistParam,
+                methods:'POST',
+                success:function(chkplanlistres){
+                    if(chkplanlistres.data.code == 200){
+                      that.setData({
+                        chkplanlist: chkplanlistres.data.data, //请求结果数据
+                      })
+
+                      let chkplanParam = {};
+                      chkplanParam.chk_plan_id = chkplanlistres.data.data[0];
+                      utils.pythonRequest({
+                        url: '/queryChkPlan/',
+                        data: chkplanParam,
+                        methods:'POST',
+                        success:function(chkplanres){
+                            if(chkplanres.data.code == 200){
+                              that.setData({
+                                firstchkplan: chkplanres.data.data, //请求结果数据
+                              })
+        
+                            }else{
+                                // 登录
+                                return;
+                            }
+                        },
+                        fail:function(res){
+                            // 登录
+                            return;
+                          }
+                      });
+
+                    }else{
+                        // 登录
+                        return;
+                    }
+                },
+                fail:function(res){
+                    // 登录
+                    return;
+                  }
+              });
+
+            }else{
+                // 登录
+                return;
+            }
+        },
+        fail:function(res){
+            // 登录
+            return;
+          }
+      });
     }
   },
 

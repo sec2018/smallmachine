@@ -11,8 +11,8 @@
   </view>
   <view class="g-ta-ct name g-fw-bold">设备巡检</view>
   <view class="item-con">
-    <view class="item g-flex g-flex-v-center" wx:for="{{5}}" wx:key="index" data-index="{{index}}" bindtap='XjAction'>
-      <view class="g-flex-c1 g-ellipsis">{{index}}#设备</view>
+    <view class="item g-flex g-flex-v-center" wx:for="{{equips}}" wo:for-item='company' wx:key="pk" data-item= "{{item}}" data-id="{{item.pk}}" bindtap='XjAction'>
+      <view class="g-flex-c1 g-ellipsis">{{item.fields.name}}设备</view>
       <view class="iconfont iconfontangle-right g-text-gray"></view>
     </view>
   </view>

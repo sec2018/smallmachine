@@ -2,11 +2,14 @@
 const utils = require('../../utils/utils.js');
 const LocUtil = require('../../utils/location.js');
 let isLocationClick = true;
+const app = getApp();
+
 Page({
   /**
    * 页面的初始数据
    */
   data: {
+    username:'',
     imgs: [
       'https://dss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1141259048,554497535&fm=26&gp=0.jpg',
       'https://dss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1141259048,554497535&fm=26&gp=0.jpg',
@@ -56,7 +59,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var that = this;
+    that.setData({
+      username: app.globalData.userInfo.username
+    })
   },
   getLoaction(){
     const _this = this;
