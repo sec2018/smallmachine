@@ -14,7 +14,8 @@
     "pages/main/main",
     "pages/singlecompany/singlecompany",
     "pages/xjdetail/xjdetail",
-    "pages/xjorder/xjorder"
+    "pages/xjorder/xjorder",
+    "pages/xjplan/xjplan"
   ],
   "window": {
     "navigationBarTitleText": "设备智能云",

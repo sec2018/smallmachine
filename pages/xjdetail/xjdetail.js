@@ -71,49 +71,25 @@ Page({
       utils.pythonRequest({
         url: '/getEquInfo/',
         data: dataParam,
-        methods:'POST',
+        methods:'GET',
         success:function(res){
-            console.log(res);
             if(res.data.code == 200){
               that.setData({
                 equipment: res.data.data, //请求结果数据
               })
 
-              let chkplanlistParam = {};
-              chkplanlistParam.equ_num = res.data.data.num;
+              let equipParam = {};
+              equipParam.equ_num = res.data.data.num;
               utils.pythonRequest({
-                url: '/queryChkPlanList/',
-                data: chkplanlistParam,
-                methods:'POST',
-                success:function(chkplanlistres){
-                    if(chkplanlistres.data.code == 200){
+                url: '/queryChkPlanInfoProceed/',
+                data: equipParam,
+                methods:'GET',
+                success:function(chkplanres){
+                    if(chkplanres.data.code == 200){
                       that.setData({
-                        chkplanlist: chkplanlistres.data.data, //请求结果数据
+                        firstchkplan: chkplanres.data.data, //请求结果数据
                       })
-
-                      let chkplanParam = {};
-                      chkplanParam.chk_plan_id = chkplanlistres.data.data[0];
-                      utils.pythonRequest({
-                        url: '/queryChkPlan/',
-                        data: chkplanParam,
-                        methods:'POST',
-                        success:function(chkplanres){
-                            if(chkplanres.data.code == 200){
-                              that.setData({
-                                firstchkplan: chkplanres.data.data, //请求结果数据
-                              })
-        
-                            }else{
-                                // 登录
-                                return;
-                            }
-                        },
-                        fail:function(res){
-                            // 登录
-                            return;
-                          }
-                      });
-
+                      console.log(this.data.firstchkplan);
                     }else{
                         // 登录
                         return;
@@ -190,5 +166,11 @@ Page({
     wx.navigateTo({
       url: '../xjorder/xjorder'
     })
-  }
+  },
+  XjPlans: function (e) { 
+    let equ = this.data.equipment;
+    wx.navigateTo({
+      url: '../xjplan/xjplan?equnum='+equ.num+'&equipname='+equ.name
+    })
+  },
 })

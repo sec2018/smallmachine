@@ -1,7 +1,6 @@
-// pages/singlecompany/singlecompany.js
-var utils = require('../../utils/utils.js');
-const app = getApp();
-let imgurl = app.globalData.imgurl;
+// pages/xjplan/xjplan.js
+const utils = require('../../utils/utils.js');
+
 
 Page({
 
@@ -9,12 +8,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    company:{},
-    id:null,
-    company_num:null,
-    username:null,
-    imgurl: imgurl,
-    equips:[]
+    equnum:'',
+    equipname:'',
+    xjplans:[]
   },
 
   /**
@@ -22,23 +18,23 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
-    if(options.num != null && options.username == null){
+    if(options.equnum != null && options.equipname!=null){
       that.setData({
-        company_num: options.num
+        equnum: options.equnum,
+        equipname: options.equipname
       })
       let dataParam = {};
-      dataParam.company_num = options.num;
+      dataParam.equ_num = options.equnum;
       utils.pythonRequest({
-        url: '/getComEqu/',
+        url: '/queryChkPlanList/',
         data: dataParam,
         methods:'GET',
         success:function(res){
-            console.log(res);
             if(res.data.code == 200){
               that.setData({
-                company: res.data.data.company.fields, //请求结果数据
-                equips: res.data.data.equ
+                xjplans: res.data.data, //请求结果数据
               })
+
             }else{
                 // 登录
                 return;
@@ -49,10 +45,6 @@ Page({
             return;
           }
       });
-    }else{
-      that.setData({
-        username: options.username
-      })
     }
   },
 
@@ -103,11 +95,5 @@ Page({
    */
   onShareAppMessage: function () {
 
-  },
-  XjAction: function (e) { 
-    let id = e.currentTarget.dataset.item.pk;
-    wx.navigateTo({
-      url: '../xjdetail/xjdetail?id='+id
-    })
-  },
+  }
 })

@@ -3,12 +3,12 @@
   <view class="g-ta-ct name g-fw-bold">{{company.name}}</view>
   <image class="name-img" src="{{imgurl+company.img}}" mode = "widthFix"></image>
   <view class="list-li">
-  <!-- {{company.description}} -->
-    XX能源热电有限公司成立于1993年，隶属于XX能源集团有限公司，主要担负着XX市企、事业单位和居民供热及部分发电任务。供热市场除市内三区、XX区、XX区、XX区、XX新区外，辐射XX、XX、XX等县市区域。经过20余年的发展，公司逐步形成了热电联产、区域锅炉、热网输配等多种供热形式并存，集供热、发电、清洁能源开发为一体的产业链。
+    {{company.description}}
+    <!-- XX能源热电有限公司成立于1993年，隶属于XX能源集团有限公司，主要担负着XX市企、事业单位和居民供热及部分发电任务。供热市场除市内三区、XX区、XX区、XX区、XX新区外，辐射XX、XX、XX等县市区域。经过20余年的发展，公司逐步形成了热电联产、区域锅炉、热网输配等多种供热形式并存，集供热、发电、清洁能源开发为一体的产业链。 -->
   </view>
-  <view class="list-li">
+  <!-- <view class="list-li">
     目前，企业资产总额达到55亿元，年销售收入23.7亿元，所属企业17家，职工2213余人；
-  </view>
+  </view> -->
   <view class="g-ta-ct name g-fw-bold">设备巡检</view>
   <view class="item-con">
     <view class="item g-flex g-flex-v-center" wx:for="{{equips}}" wo:for-item='company' wx:key="pk" data-item= "{{item}}" data-id="{{item.pk}}" bindtap='XjAction'>
