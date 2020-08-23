@@ -71,29 +71,6 @@
       </view>
 
     </view>
-    <view class="g-ta-ct table-name mt0 g-fw-bold">其他</view>
-    <view class="table-con">
-      <view class="table-tr table1-tr" wx:for="{{chkpoint}}" wx:key="index">
-        <view class="g-flex g-flex-v-center table1-tr-tit" bindtap='handleShowDetail' data-index="{{index}}">
-          <view class="g-flex-c1 table-td g-ellipsis table-right-border">
-            <text class="iconfont {{chkIndex == index ? 'iconfontangle-down':'iconfontangle-right'}}"></text>{{' '+item.content}}</view>
-          <!-- <view class=" table-td g-ellipsis table-td-short">{{item.method}}</view> -->
-          <view class=" table-td g-ellipsis table1-td-short">2020-08-08 88:88:88</view>
-        </view>
-        <view wx:if="{{chkIndex == index}}" class="table1-tr-detail">
-          <view class="table1-tr-detail-item g-flex g-flex-center g-flex-v-center" wx:for="{{5}}" wx:for-item="child" wx:for-index="childInd" wx:key="childInd" bindtap='XjDetailAction'>
-            <view class="g-flex-c1">
-              <view class="g-ellipsis">
-                <text class="g-text-grey">检查项目：</text>检查车底是否有小猫检查车底是否有小猫检查车底是否有小猫</view>
-              <view><text class="g-text-grey">计划时间：</text>2020-08-13 13:58:59</view>
-              <view><text class="g-text-grey">检查时间：</text>2020-08-13 13:59:00</view>
-            </view>
-            <view class="iconfont iconfontangle-right"></view>
-          </view>
-        </view>
-      </view>
-
-    </view>
   </view>
   <view>
     <view class="list-name-con">
