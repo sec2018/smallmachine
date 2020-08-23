@@ -25,6 +25,7 @@ Page({
       xjpersonname: '张三',
       xjresult: '正常'
     },
+    chkIndex: 2,
     chkpoint:[
       {
         content:'检查水泵运行声音是否正常检查水泵运行声音是否正常',
@@ -125,7 +126,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    console.log(this.data.chkIndex)
   },
 
   /**
@@ -173,4 +174,14 @@ Page({
       url: '../xjplan/xjplan?equnum='+equ.num+'&equipname='+equ.name
     })
   },
+  handleShowDetail: function(e){
+    let {index} = e.currentTarget.dataset;
+    console.log(index, this.data.chkIndex)
+    if(index == this.data.chkIndex){
+      index = -1;
+    }
+    this.setData({
+      chkIndex: index
+    })
+  }
 })

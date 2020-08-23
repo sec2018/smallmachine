@@ -7,6 +7,7 @@
 .name{
   font-size: 34rpx;
 }
+
 .head-list{
   background: #23233f;
   padding: 30rpx 20rpx;
@@ -34,6 +35,31 @@
 .hd-plus{
   font-size: 60rpx;
 }
+.list-name-con{
+  text-align: center;
+}
+.list-name{
+  position: relative;
+  display: inline-block;
+  height: 96rpx;
+  line-height: 96rpx;
+  font-size: 30rpx;
+  text-align: center;
+}
+.list-name::after, .list-name::before{
+  position: absolute;
+  content: '';
+  top: 44rpx;
+  height: 4rpx;
+  width: 40rpx;
+  background: #272636;
+}
+.list-name::after{
+  left:-50rpx;
+}
+.list-name::before{
+  right:-50rpx;
+}
 .table-name{
   margin: 30rpx 30rpx 0;
   background: #dcdcdc;
@@ -49,6 +75,19 @@
   font-size: 24rpx;
   border-bottom: 1px solid #dcdcdc;
 }
+.table1-tr{
+  padding:0;
+}
+.table1-tr-tit{
+  padding: 0 10rpx;
+}
+.table1-tr-detail{
+  background: #f1f1f1;
+  overflow: hidden;
+}
+.table1-tr-detail-item{
+  padding: 20rpx 30rpx;
+}
 .table-td{
   line-height: 60rpx;
   height: 60rpx;
@@ -59,4 +98,13 @@
 }
 .table-td-short{
   width: 150rpx;
+}
+.table1-td-short{
+  width: 260rpx;
+}
+.mb0{
+  margin-bottom: 0;
+}
+.mt0{
+  margin-top:0;
 }

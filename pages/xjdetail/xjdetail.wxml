@@ -45,16 +45,61 @@
     </view>
   </view>
   <view>
-    <view class="g-ta-ct table-name g-fw-bold">巡检内容</view>
-    <view class="table-con">
-      <view class="g-flex g-flex-v-center table-tr" wx:for="{{chkpoint}}" wx:key="index" data-index="{{index}}" bindtap='XjAction'>
-        <view class="g-flex-c1 table-td g-ellipsis table-right-border">{{item.content}}</view>
-        <view class=" table-td g-ellipsis table-td-short">{{item.method}}</view>
+    <view class="list-name-con">
+      <text class="list-name">巡检内容</text>
+    </view>
+    <view class="g-ta-ct table-name mt0 g-fw-bold">行车前检查</view>
+    <view class="table-con mb0">
+      <view class="table-tr table1-tr" wx:for="{{chkpoint}}" wx:key="index">
+        <view class="g-flex g-flex-v-center table1-tr-tit" bindtap='handleShowDetail' data-index="{{index}}">
+          <view class="g-flex-c1 table-td g-ellipsis table-right-border">
+            <text class="iconfont {{chkIndex == index ? 'iconfontangle-down':'iconfontangle-right'}}"></text>{{' '+item.content}}</view>
+          <!-- <view class=" table-td g-ellipsis table-td-short">{{item.method}}</view> -->
+          <view class=" table-td g-ellipsis table1-td-short">2020-08-08 88:88:88</view>
+        </view>
+        <view wx:if="{{chkIndex == index}}" class="table1-tr-detail">
+          <view class="table1-tr-detail-item g-flex g-flex-center g-flex-v-center" wx:for="{{5}}" wx:for-item="child" wx:for-index="childInd" wx:key="childInd" bindtap='XjDetailAction'>
+            <view class="g-flex-c1">
+              <view class="g-ellipsis">
+                <text class="g-text-grey">检查项目：</text>检查车底是否有小猫检查车底是否有小猫检查车底是否有小猫</view>
+              <view><text class="g-text-grey">计划时间：</text>2020-08-13 13:58:59</view>
+              <view><text class="g-text-grey">检查时间：</text>2020-08-13 13:59:00</view>
+            </view>
+            <view class="iconfont iconfontangle-right"></view>
+          </view>
+        </view>
       </view>
+
+    </view>
+    <view class="g-ta-ct table-name mt0 g-fw-bold">其他</view>
+    <view class="table-con">
+      <view class="table-tr table1-tr" wx:for="{{chkpoint}}" wx:key="index">
+        <view class="g-flex g-flex-v-center table1-tr-tit" bindtap='handleShowDetail' data-index="{{index}}">
+          <view class="g-flex-c1 table-td g-ellipsis table-right-border">
+            <text class="iconfont {{chkIndex == index ? 'iconfontangle-down':'iconfontangle-right'}}"></text>{{' '+item.content}}</view>
+          <!-- <view class=" table-td g-ellipsis table-td-short">{{item.method}}</view> -->
+          <view class=" table-td g-ellipsis table1-td-short">2020-08-08 88:88:88</view>
+        </view>
+        <view wx:if="{{chkIndex == index}}" class="table1-tr-detail">
+          <view class="table1-tr-detail-item g-flex g-flex-center g-flex-v-center" wx:for="{{5}}" wx:for-item="child" wx:for-index="childInd" wx:key="childInd" bindtap='XjDetailAction'>
+            <view class="g-flex-c1">
+              <view class="g-ellipsis">
+                <text class="g-text-grey">检查项目：</text>检查车底是否有小猫检查车底是否有小猫检查车底是否有小猫</view>
+              <view><text class="g-text-grey">计划时间：</text>2020-08-13 13:58:59</view>
+              <view><text class="g-text-grey">检查时间：</text>2020-08-13 13:59:00</view>
+            </view>
+            <view class="iconfont iconfontangle-right"></view>
+          </view>
+        </view>
+      </view>
+
     </view>
   </view>
-   <view>
-    <view class="g-ta-ct table-name g-fw-bold">设备信息</view>
+  <view>
+    <view class="list-name-con">
+      <text class="list-name">设备信息</text>
+    </view>
+    <view class="g-ta-ct table-name mt0 g-fw-bold">设备信息</view>
     <view class="table-con">
       <view class="g-flex g-flex-v-center table-tr">
         <view class=" table-td g-ellipsis table-td-short table-right-border">名称</view>
@@ -82,7 +127,7 @@
     上海电气集团股份有限公司中央研究院
   </view>
   <view class="item-con">
-    <view class="item g-flex g-flex-v-center" wx:for="{{equips}}" wo:for-item='company' wx:key="pk" data-item= "{{item}}" data-id="{{item.pk}}" bindtap='XjAction'>
+    <view class="item g-flex g-flex-v-center" wx:for="{{equips}}" wo:for-item='company' wx:key="pk" data-item="{{item}}" data-id="{{item.pk}}" bindtap='XjAction'>
       <view class="g-flex-c1 g-ellipsis">{{item.fields.name}}设备</view>
       <view class="iconfont iconfontangle-right g-text-gray"></view>
     </view>

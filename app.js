@@ -30,7 +30,8 @@ App({
             // console.log(res.data.token);
             wx.setStorageSync('sessionKey', res.data.sessionKey);
             wx.showToast({
-              title: res.data.sessionKey
+              title: res.data.sessionKey,
+              icon:'none'
             });
           },
           fail:function(){
