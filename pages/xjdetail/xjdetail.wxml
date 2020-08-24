@@ -50,26 +50,72 @@
     </view>
     <view class="g-ta-ct table-name mt0 g-fw-bold">行车前检查</view>
     <view class="table-con mb0">
-      <view class="table-tr table1-tr" wx:for="{{chkpoint}}" wx:key="index">
+      <view class="table-tr table1-tr" wx:for="{{firstchkplan.chk_routine.chk_class}}" wx:key="index">
         <view class="g-flex g-flex-v-center table1-tr-tit" bindtap='handleShowDetail' data-index="{{index}}">
           <view class="g-flex-c1 table-td g-ellipsis table-right-border">
-            <text class="iconfont {{chkIndex == index ? 'iconfontangle-down':'iconfontangle-right'}}"></text>{{' '+item.content}}</view>
+            <text class="iconfont {{chkIndex == index ? 'iconfontangle-down':'iconfontangle-right'}}"></text>{{' '+item.name}}</view>
           <!-- <view class=" table-td g-ellipsis table-td-short">{{item.method}}</view> -->
-          <view class=" table-td g-ellipsis table1-td-short">2020-08-08 88:88:88</view>
+          <view class=" table-td g-ellipsis table1-td-short">{{' '+item.chk_type}}</view>
         </view>
         <view wx:if="{{chkIndex == index}}" class="table1-tr-detail">
-          <view class="table1-tr-detail-item g-flex g-flex-center g-flex-v-center" wx:for="{{5}}" wx:for-item="child" wx:for-index="childInd" wx:key="childInd" bindtap='XjDetailAction'>
+          <view class="table1-tr-detail-item g-flex g-flex-center g-flex-v-center" wx:for="{{firstchkplan.chk_routine.chk_class[chkIndex].item}}" wx:for-item="child" wx:for-index="childInd" wx:key="childInd">
             <view class="g-flex-c1">
               <view class="g-ellipsis">
-                <text class="g-text-grey">检查项目：</text>检查车底是否有小猫检查车底是否有小猫检查车底是否有小猫</view>
-              <view><text class="g-text-grey">计划时间：</text>2020-08-13 13:58:59</view>
-              <view><text class="g-text-grey">检查时间：</text>2020-08-13 13:59:00</view>
+                <text class="g-text-grey">检查项目：</text>{{' '+child.check_point.brief}}</view>
+              <!-- <view><text class="g-text-grey">计划时间：</text>{{' '+child.check_point.entry}}</view>
+              <view><text class="g-text-grey">检查时间：</text>{{' '+child.check_point.update}}</view> -->
+              <view class="item-radio g-mb20" data-type="good" bindtap="handleXjResult">
+                <text class="iconfont iconfontxuanxiang_yixuanze item-radio-icon item-radio-icon-active"></text>
+                <text class="iconfont iconfontxuanxiang_weixuanze item-radio-icon"></text>{{' '+child.check_point.cretia_good}}
+              </view>
+              <view class="item-radio" data-type="normal" bindtap="handleXjResult">
+                <text class="iconfont iconfontxuanxiang_yixuanze item-radio-icon item-radio-icon-active"></text>
+                <text class="iconfont iconfontxuanxiang_weixuanze item-radio-icon"></text>{{' '+child.check_point.cretia_normal}}
+              </view>
+              <view class="item-radio g-mb20" data-type="perfect" bindtap="handleXjResult">
+                <text class="iconfont iconfontxuanxiang_yixuanze item-radio-icon item-radio-icon-active"></text>
+                <text class="iconfont iconfontxuanxiang_weixuanze item-radio-icon"></text>{{' '+child.check_point.cretia_perfect}}
+              </view>
+              <view class="item-radio" data-type="repair" bindtap="handleXjResult">
+                <text class="iconfont iconfontxuanxiang_yixuanze item-radio-icon item-radio-icon-active"></text>
+                <text class="iconfont iconfontxuanxiang_weixuanze item-radio-icon"></text>{{' '+child.check_point.cretia_repair}}
+              </view>
+               <view class="item-radio" data-type="replace" bindtap="handleXjResult">
+                <text class="iconfont iconfontxuanxiang_yixuanze item-radio-icon item-radio-icon-active"></text>
+                <text class="iconfont iconfontxuanxiang_weixuanze item-radio-icon"></text>{{' '+child.check_point.cretia_replace}}
+              </view>
+
+              <view class="item-name g-fw-bold">上传照片</view>
+              <!-- 图片预览区域 -->
+              <view class="img-container g-flex g-flex-wap">
+                <view class='img-info'  wx:key="*this">
+                    <image src="{{child.pic_url}}"data-index="{{index}}"mode="aspectFill" bindtap="previewImg"></image>
+                    <view class="img-delete iconfont iconfontminus-circle" data-index="{{index}}" catchtap="deleteImg"></view>
+                </view>
+                <view class="img-info img-upload g-text-grey g-ta-ct" wx:if="{{imgs.length<1}}" bindtap="chooseImg">
+                  <view class="iconfont iconfontxiangji img-upload-icon"></view>
+                  <view>{{imgs.length}}/1</view>
+                </view>
+              </view>
             </view>
-            <view class="iconfont iconfontangle-right"></view>
+            <!-- <view class="iconfont iconfontangle-right"></view> -->
           </view>
         </view>
       </view>
 
+    </view>
+
+    <view class="g-ta-ct table-name mt0 g-fw-bold">其他检查</view>
+    <view class="table-con mb0">
+       <view class="table1-tr-detail-item g-flex g-flex-center g-flex-v-center" wx:for="{{firstchkplan.add_item}}" wx:for-item="child" wx:for-index="childInd" wx:key="childInd" bindtap='XjDetailAction'>
+        <view class="g-flex-c1">
+          <view class="g-ellipsis">
+            <text class="g-text-grey">检查项目：</text>{{' '+child.check_point.brief}}</view>
+          <view><text class="g-text-grey">计划时间：</text>{{' '+child.check_point.entry}}</view>
+          <view><text class="g-text-grey">检查时间：</text>{{' '+child.check_point.update}}</view>
+        </view>
+        <view class="iconfont iconfontangle-right"></view>
+      </view>
     </view>
   </view>
   <view>

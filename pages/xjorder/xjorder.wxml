@@ -2,7 +2,7 @@
 <view class="xjorder-page">
   <view class="ui-text-primary name g-fw-bold">设备巡检单</view>
   <view class="g-text-grey">请填写巡检记录</view>
-  <view class="item-name g-fw-bold">
+  <!-- <view class="item-name g-fw-bold">
     正常的打“✔”，异常的打“×”  *
   </view>
   <view class="table-con">
@@ -13,7 +13,7 @@
         <text class="iconfont iconfontcuowu table-td-icon g-text-grey {{item.result === '2' ? 'table-err': ''}}"  bindtap="handleErrOrSuccess" data-index="{{index}}" data-type="2"></text>
       </view>
     </view>
-  </view>
+  </view> -->
   <view class="item-name g-fw-bold">巡检结果</view>
   <view class="item-radio g-mb20 {{xjResult==='1' ? 'item-radio-active' : ''}}" data-type="1" bindtap="handleXjResult">
     <text class="iconfont iconfontxuanxiang_yixuanze item-radio-icon item-radio-icon-active"></text>

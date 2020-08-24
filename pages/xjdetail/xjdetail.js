@@ -11,6 +11,7 @@ Page({
     equid:null,
     chkplanlist:[],
     firstchkplan:{},
+    submitdata:[],
     historyinfo:[
       {
         time: '2020/08/09 18:45',
@@ -25,29 +26,8 @@ Page({
       xjpersonname: '张三',
       xjresult: '正常'
     },
-    chkIndex: 2,
-    chkpoint:[
-      {
-        content:'检查水泵运行声音是否正常检查水泵运行声音是否正常',
-        method: '耳听耳听耳听耳听耳听耳听耳听'
-      },
-      {
-        content:'配电柜电流，频率显示状态',
-        method: '目视'
-      },
-      {
-        content:'各连接螺栓是否正常',
-        method: '目视，手摸'
-      },
-      {
-        content:'泵体及连接管道是否有漏水现象',
-        method: '目视'
-      },
-      {
-        content:'检查压力表是都在正常范围',
-        method: '目视'
-      }
-    ],
+    chkIndex: 0,
+    chkAddItemIndex: 0,
     equipment:{
       equname:'2#循环泵',
       type:'SLR150-152A',
@@ -183,5 +163,138 @@ Page({
     this.setData({
       chkIndex: index
     })
+  },
+  // radio
+  handleXjResult (e){
+    let {type} = e.currentTarget.dataset;
+    this.setData({
+      xjResult: type
+    })
+  },
+
+
+  //选择图片
+  chooseImg: function (e) {
+    const that = this;
+    const limitMsg = () => wx.showToast({ title: '最多只能上传1张图片', icon: 'none' })
+    let imgs = this.data.imgs;
+    if (imgs.length >= 1) {
+      limitMsg()
+      return
+    }
+    wx.chooseImage({
+      count: 1-imgs.length, // 默认9
+      sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+      sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+      success: function (res) {
+        // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
+        let tempFilePaths = res.tempFilePaths;
+        let imgs = that.data.imgs;
+        if (tempFilePaths.length + imgs.length > 1) {
+          limitMsg()
+          return
+        }
+        // console.log(tempFilePaths + '----');
+        wx.showLoading({ title: '上传中' })
+        tempFilePaths.forEach((path, index) => {
+          utils.pythonImgRequest({
+            url: '/postNewImg/?item_id=4782',
+            filePath: String(path),
+            success: function (res) {
+              console.log(res);
+              if (res.data.code == 200) {
+                let imageUrl = app.globalData.imgurl+"/"+res.data.data.pic_url; // 接口返回的图片地址
+                that.setData({ imgs: [...imgs, imageUrl] });
+                if (index === tempFilePaths.length - 1) {
+                  wx.hideLoading();
+                }
+              }
+            },
+            fail: function (res) {
+              wx.hideLoading();
+              wx.showToast({
+                title: res.msg || '系统繁忙，请稍后重试',
+                icon: 'none'
+              });
+            }
+          })
+        });
+      }
+    });
+  },
+  // 删除图片
+  deleteImg: function (e) {
+    var imgs = this.data.imgs;
+    var index = e.currentTarget.dataset.index;
+    imgs.splice(index, 1);
+    this.setData({
+      imgs: imgs
+    });
+  },
+  // 预览图片
+  previewImg: function (e) {
+    //获取当前图片的下标
+    var index = e.currentTarget.dataset.index;
+    //所有图片
+    var imgs = this.data.imgs;
+    wx.previewImage({
+      //当前显示图片
+      current: imgs[index],
+      //所有图片
+      urls: imgs
+    })
+  },
+  //提交到后台
+  sureUpload:function(e){
+    wx.showModal({
+      title: '提交巡检结果',
+      content: '确定提交？',
+      success(res) {
+        if (res.confirm) {
+          wx.showLoading({
+            title: '正在提交',
+            mask:true
+          })
+          let count = 0;
+          for (var i = 0; i < imgList.length; i++) {
+            var imgUrl = imgList[i];
+            utils.fileRequest({
+              url: '/monitor/xjinfo/uploadimg',
+              filePath: imgUrl,
+              success:function(res){
+                  console.log(res);
+                  if(res.data.code == 200){
+                    count++;
+                    if(count == imgList.length){
+                      wx.hideLoading();
+                      wx.showToast({
+                        title: '上传成功',
+                        icon:"success",
+                        duration:2000
+                      })
+                    }
+                  }else{
+                    if(count == imgList.length){
+                      wx.hideLoading();
+                      wx.showToast({
+                        title: '上传成功',
+                        icon:"success",
+                        duration:2000
+                      })
+                    }
+                    return;
+                  }
+              },
+              fail:function(res){
+                wx.hideLoading();
+                return;
+              }
+            })
+          } //for循环结束
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    });
   }
 })

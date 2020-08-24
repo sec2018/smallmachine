@@ -108,3 +108,50 @@
 .mt0{
   margin-top:0;
 }
+
+.item-radio{
+  border: 1px solid #dcdcdc;
+  line-height: 60rpx;
+}
+.item-radio-active{
+  border: 1px solid #00ff00;
+  color: #00ff00;
+}
+.item-radio .item-radio-icon-active, .item-radio-active .item-radio-icon{
+  display: none;
+}
+.item-radio-active .item-radio-icon-active{
+  display: inline-block;
+}
+.item-radio-icon{
+  vertical-align: middle;
+  display: inline-block;
+  margin-right: 16rpx;
+  margin-left: 20rpx;
+  font-size: 30rpx;
+}
+.img-info{
+  position: relative;
+  width: 210rpx;
+  height: 210rpx;
+  margin: 0 10rpx 20rpx 10rpx;
+  background: #f8f8f8;
+}
+.img-info image{
+  width: 100%;
+  height: 100%;
+}
+.img-delete{
+  position: absolute;
+  right: 0;
+  top:0;
+  padding: 10rpx;
+  color: #ff0000;
+  font-size: 32rpx;
+}
+
+.img-upload .img-upload-icon{
+  padding-top: 60rpx;
+  padding-bottom: 20rpx;
+  font-size: 40rpx;
+}

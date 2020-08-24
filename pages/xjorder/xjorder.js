@@ -166,13 +166,17 @@ Page({
         // console.log(tempFilePaths + '----');
         wx.showLoading({ title: '上传中' })
         tempFilePaths.forEach((path, index) => {
-          utils.fileRequest({
-            url: '/monitor/xjinfo/uploadimg',
-            filePath: path,
+          // utils.fileRequest({
+          //   url: '/monitor/xjinfo/uploadimg',
+          //   filePath: path,
+          
+          utils.pythonImgRequest({
+            url: '/postNewImg/?item_id=4782',
+            filePath: String(path),
             success: function (res) {
               console.log(res);
               if (res.data.code == 200) {
-                let imageUrl = 'https://dss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1141259048,554497535&fm=26&gp=0.jpg'; // 接口返回的图片地址
+                let imageUrl = app.globalData.imgurl+"/"+res.data.data.pic_url; // 接口返回的图片地址
                 that.setData({ imgs: [...imgs, imageUrl] });
                 if (index === tempFilePaths.length - 1) {
                   wx.hideLoading();
@@ -245,11 +249,16 @@ Page({
             mask:true
           })
           let count = 0;
+          let dataparam = {};
+          dataparam.item_id = "4782";
+          
           for (var i = 0; i < imgList.length; i++) {
             var imgUrl = imgList[i];
             utils.fileRequest({
-              url: '/monitor/xjinfo/uploadimg',
+              // url: '/monitor/xjinfo/uploadimg',
+              url: '/postNewImg/',
               filePath: imgUrl,
+              data: dataparam,
               success:function(res){
                   console.log(res);
                   if(res.data.code == 200){

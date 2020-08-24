@@ -145,12 +145,12 @@ let pythonRequest = function(args = {url:'',methods:'', data:{}, success:functio
   }
 }
 
-let pythonFileRequest = function(args = {url:'', filePath:'', success:function(){},fail:function(){}}){
+let pythonImgRequest = function(args = {url:'', filePath:'', success:function(){},fail:function(){}}){
   wx.uploadFile({
       url: apiPythonRoot+args.url,
       header: {'Authorization':'JWT '+wx.getStorageSync('token')},
       filePath: args.filePath,
-      name: 'file',
+      name: 'img',
       method: 'POST',
       dataType: 'json',
       responseType: 'text',
@@ -217,5 +217,6 @@ module.exports = {
   serverRequest: serverRequest,
   loginAndSaveUser: loginAndSaveUser,
   fileRequest: fileRequest,
-  pythonRequest: pythonRequest
+  pythonRequest: pythonRequest,
+  pythonImgRequest,pythonImgRequest
 }
