@@ -1,0 +1,26 @@
+<!--component/xjdetailcom/index.wxml-->
+<view class="xjdetail-com">
+  <view class="g-pt20">
+    <text class="g-text-grey">检查项目：</text>
+    <text>{{defaultData.check_point.brief}}</text>
+  </view>
+  <view class="item-list g-mt20">
+    <view class="g-flex g-flex-v-center item" wx:for="{{itemList}}" wx:key="index" data-id="{{item.id}}" bindtap="handleItem">
+      <view class="iconfont item-radio-icon {{item.id == itemId ? 'iconfontxuanxiang_yixuanze item-radio-active' : 'iconfontxuanxiang_weixuanze'}} "></view>
+      <view class="g-flex-c1">{{item.value}}</view>
+    </view>
+  </view>
+  <view class="g-mt40 g-mb20">上传照片</view>
+  <!-- 图片预览区域 -->
+  <view class="img-container g-flex g-flex-wap">
+    <view class='img-info' wx:for="{{imgs}}" wx:key="item">
+        <image src="{{item}}"data-index="{{index}}"mode="aspectFill" bindtap="previewImg"></image>
+        <view class="img-delete iconfont iconfontminus-circle" data-index="{{index}}" catchtap="deleteImg"></view>
+    </view>
+    <view class="img-info img-upload g-text-grey g-ta-ct" wx:if="{{imgs.length<1}}" bindtap="chooseImg">
+      <view class="iconfont iconfontxiangji img-upload-icon"></view>
+      <view>{{imgs.length}}/1</view>
+    </view>
+  </view>
+  <view class="g-button-primary g-mt20" bindtap="handleSave">保存</view>
+</view>

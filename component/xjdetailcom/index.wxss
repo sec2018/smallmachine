@@ -1,0 +1,52 @@
+/* component/xjdetailcom/index.wxss */
+@import '/style/icons.wxss';
+@import '/style/common.wxss';
+@import '/style/color.wxss';
+.xjdetail-com{
+  background: #ffffff;
+  border: 1px solid #dcdcdc;
+  padding: 20rpx;
+}
+
+.xjdetail-com .item-list{
+  border: 1px solid #dcdcdc;
+  padding: 10rpx 20rpx;
+}
+.xjdetail-com .item{
+  line-height: 80rpx;
+}
+.xjdetail-com .item-radio-icon{
+  font-size: 30rpx;
+  margin-right: 20rpx;
+}
+.xjdetail-com .item-radio-active{
+  color: #00ff00;
+}
+.xjdetail-com .img-container{
+
+}
+.xjdetail-com .img-info{
+  position: relative;
+  width: 210rpx;
+  height: 210rpx;
+  margin: 0 10rpx 20rpx 10rpx;
+  background: #f8f8f8;
+}
+.xjdetail-com .img-info image{
+  width: 100%;
+  height: 100%;
+}
+.xjdetail-com .img-delete{
+  position: absolute;
+  right: 0;
+  top:0;
+  padding: 10rpx;
+  color: #ff0000;
+  font-size: 32rpx;
+}
+
+.xjdetail-com .img-upload .img-upload-icon{
+  padding-top: 60rpx;
+  padding-bottom: 20rpx;
+  font-size: 40rpx;
+}

@@ -145,6 +145,16 @@ Page({
   onShareAppMessage: function () {
 
   },
+  handleSaveSuccess: function (e){
+    console.log(e.detail);
+    const result = e.detail;
+    if(result.params.paramName === 'add_item'){
+      this.setData({
+        [`firstchkplan.add_item[${result.params.paramIndex}]`]: result.data
+      })
+    }
+    
+  },
   XjDetailAction: function (e) { 
     wx.navigateTo({
       url: '../xjorder/xjorder'

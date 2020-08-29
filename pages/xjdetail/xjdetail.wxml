@@ -105,7 +105,12 @@
     </view>
 
     <view class="g-ta-ct table-name mt0 g-fw-bold">其他检查</view>
-    <view class="table-con mb0">
+    <view class="table-con mb0" v-if="firstchkplan.add_item">
+    <!-- 测试 -->
+    <view wx:for="{{firstchkplan.add_item}}" wx:key="id" class="g-mb20">
+      <item-com defaultData="{{item}}" paramName="add_item" paramIndex="{{index}}" wx:key="{{id+'1'}}" bind:success="handleSaveSuccess"></item-com>
+    </view>
+    
        <!-- <view class="table1-tr-detail-item g-flex g-flex-center g-flex-v-center" wx:for="{{firstchkplan.add_item}}" wx:for-item="child" wx:for-index="childInd" wx:key="childInd" bindtap='XjDetailAction'>
         <view class="g-flex-c1">
           <view class="g-ellipsis">
