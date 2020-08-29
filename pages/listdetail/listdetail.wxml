@@ -13,103 +13,18 @@
           <view class=" table-td g-ellipsis table1-td-short">{{' '+item.chk_type}}</view>
         </view>
         <view wx:if="{{chkIndex == index}}" class="table1-tr-detail">
-          <view class="table1-tr-detail-item g-flex g-flex-center g-flex-v-center" wx:for="{{firstchkplan.chk_routine.chk_class[chkIndex].item}}" wx:for-item="child" wx:for-index="childInd" wx:key="childInd">
-            <view class="g-flex-c1" bindtap='handleShowItemDetail' data-index="{{childInd}}">
-              <view class="g-ellipsis">
-                <text class="g-text-grey">检查项目：</text>{{' '+child.check_point.brief}}</view>
-              <!-- <view><text class="g-text-grey">计划时间：</text>{{' '+child.check_point.entry}}</view>
-              <view><text class="g-text-grey">检查时间：</text>{{' '+child.check_point.update}}</view> -->
-              <view class="item-radio g-mb20" data-type="good" data-index="{{childInd}}" bindtap="handleXjResult">
-                <text class="iconfont iconfontxuanxiang_yixuanze item-radio-icon item-radio-icon-active"></text>
-                <text class="iconfont iconfontxuanxiang_weixuanze item-radio-icon"></text>{{' '+child.check_point.cretia_good}}
-              </view>
-              <view class="item-radio" data-type="normal" data-index="{{childInd}}" bindtap="handleXjResult">
-                <text class="iconfont iconfontxuanxiang_yixuanze item-radio-icon item-radio-icon-active"></text>
-                <text class="iconfont iconfontxuanxiang_weixuanze item-radio-icon"></text>{{' '+child.check_point.cretia_normal}}
-              </view>
-              <view class="item-radio g-mb20" data-type="perfect" data-index="{{childInd}}" bindtap="handleXjResult">
-                <text class="iconfont iconfontxuanxiang_yixuanze item-radio-icon item-radio-icon-active"></text>
-                <text class="iconfont iconfontxuanxiang_weixuanze item-radio-icon"></text>{{' '+child.check_point.cretia_perfect}}
-              </view>
-              <view class="item-radio" data-type="repair" data-index="{{childInd}}" bindtap="handleXjResult">
-                <text class="iconfont iconfontxuanxiang_yixuanze item-radio-icon item-radio-icon-active"></text>
-                <text class="iconfont iconfontxuanxiang_weixuanze item-radio-icon"></text>{{' '+child.check_point.cretia_repair}}
-              </view>
-               <view class="item-radio" data-type="replace" data-index="{{childInd}}" bindtap="handleXjResult">
-                <text class="iconfont iconfontxuanxiang_yixuanze item-radio-icon item-radio-icon-active"></text>
-                <text class="iconfont iconfontxuanxiang_weixuanze item-radio-icon"></text>{{' '+child.check_point.cretia_replace}}
-              </view>
-
-              <view class="item-name g-fw-bold">上传照片</view>
-              <!-- 图片预览区域 -->
-              <view class="img-container g-flex g-flex-wap">
-                <view class='img-info'  wx:key="*this">
-                    <image src="{{child.pic_url}}"data-index="{{index}}"mode="aspectFill" bindtap="previewImg"></image>
-                    <view class="img-delete iconfont iconfontminus-circle" data-index="{{index}}" catchtap="deleteImg"></view>
-                </view>
-                <view class="img-info img-upload g-text-grey g-ta-ct" wx:if="{{imgs.length<1}}" bindtap="chooseImg">
-                  <view class="iconfont iconfontxiangji img-upload-icon"></view>
-                  <view>{{imgs.length}}/1</view>
-                </view>
-              </view>
-            </view>
-            <!-- <view class="iconfont iconfontangle-right"></view> -->
+          <view class="g-mb20" wx:for="{{firstchkplan.chk_routine.chk_class[chkIndex].item}}" wx:for-item="child" wx:for-index="childInd" wx:key="childInd">
+            <item-com defaultData="{{child}}" paramName="{{chkIndex}}" disabled="{{true}}" paramIndex="{{childInd}}" wx:key="{{childInd+'1k'}}" bind:success="handleSaveSuccess"></item-com>
           </view>
         </view>
       </view>
-
     </view>
 
     <view class="g-ta-ct table-name mt0 g-fw-bold">其他检查</view>
-    <view class="table-con mb0">
-       <!-- <view class="table1-tr-detail-item g-flex g-flex-center g-flex-v-center" wx:for="{{firstchkplan.add_item}}" wx:for-item="child" wx:for-index="childInd" wx:key="childInd" bindtap='XjDetailAction'>
-        <view class="g-flex-c1">
-          <view class="g-ellipsis">
-            <text class="g-text-grey">检查项目：</text>{{' '+child.check_point.brief}}</view>
-          <view><text class="g-text-grey">计划时间：</text>{{' '+child.check_point.entry}}</view>
-          <view><text class="g-text-grey">检查时间：</text>{{' '+child.check_point.update}}</view>
-        </view>
-        <view class="iconfont iconfontangle-right"></view>
-      </view> -->
-      <view class="table1-tr-detail-item g-flex g-flex-center g-flex-v-center" wx:for="{{firstchkplan.add_item}}" wx:for-item="child" wx:for-index="childInd" wx:key="childInd">
-            <view class="g-flex-c1" bindtap='handleShowAddItemDetail' data-index="{{childInd}}">
-              <view class="g-ellipsis">
-                <text class="g-text-grey">检查项目：</text>{{' '+child.check_point.brief}}</view>
-              <view class="item-radio g-mb20" data-type="good" data-index="{{childInd}}" bindtap="handleXjResult">
-                <text class="iconfont iconfontxuanxiang_yixuanze item-radio-icon item-radio-icon-active"></text>
-                <text class="iconfont iconfontxuanxiang_weixuanze item-radio-icon"></text>{{' '+child.check_point.cretia_good}}
-              </view>
-              <view class="item-radio" data-type="normal" data-index="{{childInd}}" bindtap="handleXjResult">
-                <text class="iconfont iconfontxuanxiang_yixuanze item-radio-icon item-radio-icon-active"></text>
-                <text class="iconfont iconfontxuanxiang_weixuanze item-radio-icon"></text>{{' '+child.check_point.cretia_normal}}
-              </view>
-              <view class="item-radio g-mb20" data-type="perfect" data-index="{{childInd}}" bindtap="handleXjResult">
-                <text class="iconfont iconfontxuanxiang_yixuanze item-radio-icon item-radio-icon-active"></text>
-                <text class="iconfont iconfontxuanxiang_weixuanze item-radio-icon"></text>{{' '+child.check_point.cretia_perfect}}
-              </view>
-              <view class="item-radio" data-type="repair" data-index="{{childInd}}" bindtap="handleXjResult">
-                <text class="iconfont iconfontxuanxiang_yixuanze item-radio-icon item-radio-icon-active"></text>
-                <text class="iconfont iconfontxuanxiang_weixuanze item-radio-icon"></text>{{' '+child.check_point.cretia_repair}}
-              </view>
-               <view class="item-radio" data-type="replace" data-index="{{childInd}}" bindtap="handleXjResult">
-                <text class="iconfont iconfontxuanxiang_yixuanze item-radio-icon item-radio-icon-active"></text>
-                <text class="iconfont iconfontxuanxiang_weixuanze item-radio-icon"></text>{{' '+child.check_point.cretia_replace}}
-              </view>
-
-              <view class="item-name g-fw-bold">上传照片</view>
-              <!-- 图片预览区域 -->
-              <view class="img-container g-flex g-flex-wap">
-                <view class='img-info'  wx:key="*this">
-                    <image src="{{child.pic_url}}"data-index="{{index}}"mode="aspectFill" bindtap="previewImg"></image>
-                    <view class="img-delete iconfont iconfontminus-circle" data-index="{{index}}" catchtap="deleteImg"></view>
-                </view>
-                <view class="img-info img-upload g-text-grey g-ta-ct" wx:if="{{imgs.length<1}}" bindtap="chooseImg">
-                  <view class="iconfont iconfontxiangji img-upload-icon"></view>
-                  <view>{{imgs.length}}/1</view>
-                </view>
-              </view>
-            </view>
-            <!-- <view class="iconfont iconfontangle-right"></view> -->
-          </view>
+    <view class="table-con mb0" v-if="firstchkplan.add_item">
+      <!-- 测试 -->
+      <view wx:for="{{firstchkplan.add_item}}" wx:key="id" class="g-mb20">
+        <item-com defaultData="{{item}}" paramName="add_item" paramIndex="{{index}}" disabled="{{true}}" wx:key="{{id+'1'}}" bind:success="handleSaveSuccess"></item-com>
+      </view>
     </view>
   </view>

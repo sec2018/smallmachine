@@ -1,5 +1,6 @@
 // component/xjdetailcom/index.js
 const utils = require('../../utils/utils.js');
+const app = getApp();
 function handleItem(data){
   let keyName = ['perfect', 'good', 'normal', 'repair', 'replace'];
   let list = keyName.map(item => {
@@ -17,7 +18,9 @@ Component({
       // 在组件实例进入页面节点树时执行
       var _item = this.data.defaultData;
       this.setData({
-        itemList: handleItem(_item)
+        itemList: handleItem(_item),
+        itemId: _item.result,
+        imgs: _item.pic_url ? _item.pic_url.split(',') : []
       })
       console.log(_item, 'lll')
     },
@@ -40,6 +43,10 @@ Component({
     paramIndex: {
       type: Number,
       default: ''
+    },
+    disabled: {
+      type: Boolean,
+      default: false
     }
   },
 
@@ -57,16 +64,19 @@ Component({
    */
   methods: {
     handleItem: function (e) {
+      if(this.data.disabled) return;
       let id = e.currentTarget.dataset.id;
       console.log(id)
       if(id !== this.data.itemId){
         this.setData({
           itemId: id
-        })
+        });
+        this.handleSave();
       }
     },
     //选择图片
     chooseImg: function (e) {
+      if(this.data.disabled) return;
       const that = this;
       const limitMsg = () => wx.showToast({ title: '最多只能上传1张图片', icon: 'none' })
       let imgs = this.data.imgs;
@@ -98,6 +108,7 @@ Component({
                   let imageUrl = app.globalData.imgurl + "/" + res.data.data.pic_url; // 接口返回的图片地址
                   that.setData({ imgs: [...imgs, imageUrl] });
                   if (index === tempFilePaths.length - 1) {
+                    that.handleSave();
                     wx.hideLoading();
                   }
                 }
@@ -116,6 +127,7 @@ Component({
     },
     // 删除图片
     deleteImg: function (e) {
+      if(this.data.disabled) return;
       var imgs = this.data.imgs;
       var index = e.currentTarget.dataset.index;
       imgs.splice(index, 1);
@@ -138,13 +150,13 @@ Component({
     },
     // 保存按钮
     handleSave(){
-      if(!this.data.itemId){
-        wx.showToast({
-          title: '请选择检查项结果',
-          icon: 'none'
-        })
-        return
-      }
+      // if(!this.data.itemId){
+      //   wx.showToast({
+      //     title: '请选择检查项结果',
+      //     icon: 'none'
+      //   })
+      //   return
+      // }
       this.triggerEvent('success', {
         data: {
           ...this.data.defaultData,

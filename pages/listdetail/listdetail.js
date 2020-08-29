@@ -8,13 +8,36 @@ Page({
    * 页面的初始数据
    */
   data: {
-    planid:'',
+    equid:null,
+    chkplanlist:[],
     firstchkplan:{},
-    chkIndex: 0,
+    submitdata:[],
+    historyinfo:[
+      {
+        time: '2020/08/09 18:45',
+        formname: '设备巡检单',
+        xjpersonname: '张三',
+        xjresult: '正常'
+      }
+    ],
+    lasthistoryinfo:{
+      time: '2020/08/09 18:45',
+      formname: '设备巡检单',
+      xjpersonname: '张三',
+      xjresult: '正常'
+    },
+    chkIndex: -1,
     chkAddItemIndex: 0,
     chkItemIndex:0,
     chkAddItemItemIndex:0,
-    submitdata:[]
+    equipment:{
+      equname:'2#循环泵',
+      type:'SLR150-152A',
+      position:'换热站',
+      keepperson:'张三',
+      phonenum:'13256487562',
+      startdate:'2019-12-03'
+    }
   },
 
   /**
@@ -98,6 +121,32 @@ Page({
   onShareAppMessage: function () {
 
   },
+  // 组件的回调事件
+  handleSaveSuccess: function (e){
+    console.log(e.detail);
+    const result = e.detail;
+    if(result.params.paramName === 'add_item'){ //其他项
+      this.setData({
+        [`firstchkplan.add_item[${result.params.paramIndex}]`]: result.data
+      })
+    } else {
+      this.setData({
+        [`firstchkplan.chk_routine.chk_class[${result.params.paramName}].item[${result.params.paramIndex}]`]: result.data
+      })
+    }
+    
+  },
+  XjDetailAction: function (e) { 
+    wx.navigateTo({
+      url: '../xjorder/xjorder'
+    })
+  },
+  XjPlans: function (e) { 
+    let equ = this.data.equipment;
+    wx.navigateTo({
+      url: '../xjplan/xjplan?equnum='+equ.num+'&equipname='+equ.name
+    })
+  },
   handleShowDetail: function(e){
     let {index} = e.currentTarget.dataset;
     console.log(index, this.data.chkIndex)
@@ -108,104 +157,7 @@ Page({
       chkIndex: index
     })
   },
-  handleShowItemDetail:function(e){
-    let {index} = e.currentTarget.dataset;
-    this.setData({
-      chkItemIndex: index
-    })
-    console.log("index:"+this.data.chkIndex, "itemindex:"+this.data.chkItemIndex)
-  },
-  handleShowAddItemDetail:function(e){
-    let {index} = e.currentTarget.dataset;
-    this.setData({
-      chkAddItemIndex: index
-    })
-    console.log("additemindex:"+this.data.chkAddItemIndex)
-  },
-  // radio
-  handleXjResult (e){
-    let {type} = e.currentTarget.dataset;
-    let {index} = e.currentTarget.dataset;
-    this.setData({
-      chkItemIndex: index
-    })
-    this.setData({
-      [`firstchkplan.chk_routine.chk_class[${this.data.chkIndex}].item[${this.data.chkItemIndex}].result`]: type
-    })
-  },
-
-
-  //选择图片
-  chooseImg: function (e) {
-    const that = this;
-    const limitMsg = () => wx.showToast({ title: '最多只能上传1张图片', icon: 'none' })
-    let imgs = this.data.imgs;
-    if (imgs.length >= 1) {
-      limitMsg()
-      return
-    }
-    wx.chooseImage({
-      count: 1-imgs.length, // 默认9
-      sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
-      sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
-      success: function (res) {
-        // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
-        let tempFilePaths = res.tempFilePaths;
-        let imgs = that.data.imgs;
-        if (tempFilePaths.length + imgs.length > 1) {
-          limitMsg()
-          return
-        }
-        // console.log(tempFilePaths + '----');
-        wx.showLoading({ title: '上传中' })
-        tempFilePaths.forEach((path, index) => {
-          utils.pythonImgRequest({
-            url: '/postNewImg/?item_id=4782',
-            filePath: String(path),
-            success: function (res) {
-              console.log(res);
-              if (res.data.code == 200) {
-                let imageUrl = app.globalData.imgurl+"/"+res.data.data.pic_url; // 接口返回的图片地址
-                that.setData({ imgs: [...imgs, imageUrl] });
-                if (index === tempFilePaths.length - 1) {
-                  wx.hideLoading();
-                }
-              }
-            },
-            fail: function (res) {
-              wx.hideLoading();
-              wx.showToast({
-                title: res.msg || '系统繁忙，请稍后重试',
-                icon: 'none'
-              });
-            }
-          })
-        });
-      }
-    });
-  },
-  // 删除图片
-  deleteImg: function (e) {
-    var imgs = this.data.imgs;
-    var index = e.currentTarget.dataset.index;
-    imgs.splice(index, 1);
-    this.setData({
-      imgs: imgs
-    });
-  },
-  // 预览图片
-  previewImg: function (e) {
-    //获取当前图片的下标
-    var index = e.currentTarget.dataset.index;
-    //所有图片
-    var imgs = this.data.imgs;
-    wx.previewImage({
-      //当前显示图片
-      current: imgs[index],
-      //所有图片
-      urls: imgs
-    })
-  },
+ 
   //提交到后台
   sureUpload:function(e){
     wx.showModal({
