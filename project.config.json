@@ -156,7 +156,7 @@
 					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 14,
 					"name": "pages/xjdetail/xjdetail",
 					"pathName": "pages/xjdetail/xjdetail",
 					"query": "id=2",

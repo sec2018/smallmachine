@@ -95,5 +95,11 @@ Page({
    */
   onShareAppMessage: function () {
 
-  }
+  },
+  planDetail: function (e) { 
+    let id = e.currentTarget.dataset.item.id;
+    wx.navigateTo({
+      url: '../listdetail/listdetail?id='+id
+    })
+  },
 })

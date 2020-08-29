@@ -1,4 +1,4 @@
-// pages/xjdetail/xjdetail.js
+// pages/listdetail/listdetail.js
 const utils = require('../../utils/utils.js');
 
 
@@ -8,36 +8,13 @@ Page({
    * 页面的初始数据
    */
   data: {
-    equid:null,
-    chkplanlist:[],
+    planid:'',
     firstchkplan:{},
-    submitdata:[],
-    historyinfo:[
-      {
-        time: '2020/08/09 18:45',
-        formname: '设备巡检单',
-        xjpersonname: '张三',
-        xjresult: '正常'
-      }
-    ],
-    lasthistoryinfo:{
-      time: '2020/08/09 18:45',
-      formname: '设备巡检单',
-      xjpersonname: '张三',
-      xjresult: '正常'
-    },
     chkIndex: 0,
     chkAddItemIndex: 0,
     chkItemIndex:0,
     chkAddItemItemIndex:0,
-    equipment:{
-      equname:'2#循环泵',
-      type:'SLR150-152A',
-      position:'换热站',
-      keepperson:'张三',
-      phonenum:'13256487562',
-      startdate:'2019-12-03'
-    }
+    submitdata:[]
   },
 
   /**
@@ -45,45 +22,21 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
-    if(options.id != null && !options.username){
+    if(options.id != null){
       that.setData({
-        equid: options.id
+        planid: options.id
       })
       let dataParam = {};
-      dataParam.equ_id = options.id;
+      dataParam.chk_plan_id = options.id;
       utils.pythonRequest({
-        url: '/getEquInfo/',
+        url: '/queryChkPlanInfo/',
         data: dataParam,
         methods:'GET',
         success:function(res){
             if(res.data.code == 200){
               that.setData({
-                equipment: res.data.data, //请求结果数据
+                firstchkplan: res.data.data, //请求结果数据
               })
-
-              let equipParam = {};
-              equipParam.equ_num = res.data.data.num;
-              utils.pythonRequest({
-                url: '/queryChkPlanInfoProceed/',
-                data: equipParam,
-                methods:'GET',
-                success:function(chkplanres){
-                    if(chkplanres.data.code == 200){
-                      that.setData({
-                        firstchkplan: chkplanres.data.data, //请求结果数据
-                      })
-                      console.log(this.data.firstchkplan);
-                    }else{
-                        // 登录
-                        return;
-                    }
-                },
-                fail:function(res){
-                    // 登录
-                    return;
-                  }
-              });
-
             }else{
                 // 登录
                 return;
@@ -108,7 +61,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    console.log(this.data.chkIndex)
+
   },
 
   /**
@@ -144,17 +97,6 @@ Page({
    */
   onShareAppMessage: function () {
 
-  },
-  XjDetailAction: function (e) { 
-    wx.navigateTo({
-      url: '../xjorder/xjorder'
-    })
-  },
-  XjPlans: function (e) { 
-    let equ = this.data.equipment;
-    wx.navigateTo({
-      url: '../xjplan/xjplan?equnum='+equ.num+'&equipname='+equ.name
-    })
   },
   handleShowDetail: function(e){
     let {index} = e.currentTarget.dataset;

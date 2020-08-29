@@ -1,49 +1,4 @@
-<!--pages/xjdetail/xjdetail.wxml-->
-<view>
-  <view class="page-bg">
-    <view class="name g-ta-ct g-fw-bold g-mb20">{{equipment.name}}</view>
-    <view class="head-list">
-      <view class="g-flex g-flex-v-center">
-        <view class="head-list-name g-flex-c1">数据汇总</view>
-        <view>查看全部</view>
-      </view>
-      <view class="g-flex g-flex-v-center g-mt20">
-        <view class="head-list-left">时间</view>
-        <view>{{lasthistoryinfo.time}}</view>
-      </view>
-      <view class="g-flex g-flex-v-center g-mt20">
-        <view class="head-list-left">表单</view>
-        <view>{{lasthistoryinfo.formname}}</view>
-      </view>
-      <view class="g-flex g-flex-v-center g-mt20">
-        <view class="head-list-left">巡检人</view>
-        <view>{{lasthistoryinfo.xjpersonname}}</view>
-      </view>
-      <view class="g-flex g-flex-v-center g-mt20">
-        <view class="head-list-left">巡检结果</view>
-        <view>{{lasthistoryinfo.xjresult}}</view>
-      </view>
-    </view>
-    <view class="hd-block g-flex g-flex-v-center g-flex-between" bindtap='XjDetailAction'>
-      <view>
-        <view class="hd-name g-fw-bold g-text-primary">设备巡检</view>
-        <view class="g-text-grey">请填写巡检记录</view>
-      </view>
-      <view class="g-text-grey hd-plus">+</view>
-    </view>
-    <view class="hd-block g-flex g-flex-v-center g-flex-between">
-      <view>
-        <view class="hd-name g-fw-bold g-text-primary">设备监控</view>
-        <view class="g-text-grey">查看设备实时信息</view>
-      </view>
-    </view>
-    <view class="hd-block g-flex g-flex-v-center g-flex-between" bindtap='XjPlans'>
-      <view>
-        <view class="hd-name g-fw-bold g-text-primary">巡检计划</view>
-        <view class="g-text-grey">查看设备巡检计划</view>
-      </view>
-    </view>
-  </view>
+<!--pages/listdetail/listdetail.wxml-->
   <view>
     <view class="list-name-con">
       <text class="list-name">巡检内容</text>
@@ -73,7 +28,8 @@
                 <text class="iconfont iconfontxuanxiang_weixuanze item-radio-icon"></text>{{' '+child.check_point.cretia_normal}}
               </view>
               <view class="item-radio g-mb20" data-type="perfect" data-index="{{childInd}}" bindtap="handleXjResult">
-                <text class="iconfont  item-radio-icon {{child.check_point.result == 'perfect' ? ' iconfontxuanxiang_yixuanze item-radio-icon-active' : 'iconfontxuanxiang_weixuanze'}}"></text>{{' '+child.check_point.cretia_perfect}}
+                <text class="iconfont iconfontxuanxiang_yixuanze item-radio-icon item-radio-icon-active"></text>
+                <text class="iconfont iconfontxuanxiang_weixuanze item-radio-icon"></text>{{' '+child.check_point.cretia_perfect}}
               </view>
               <view class="item-radio" data-type="repair" data-index="{{childInd}}" bindtap="handleXjResult">
                 <text class="iconfont iconfontxuanxiang_yixuanze item-radio-icon item-radio-icon-active"></text>
@@ -157,41 +113,3 @@
           </view>
     </view>
   </view>
-  <view>
-    <view class="list-name-con">
-      <text class="list-name">设备信息</text>
-    </view>
-    <view class="g-ta-ct table-name mt0 g-fw-bold">设备信息</view>
-    <view class="table-con">
-      <view class="g-flex g-flex-v-center table-tr">
-        <view class=" table-td g-ellipsis table-td-short table-right-border">名称</view>
-        <view class="g-flex-c1 table-td g-ellipsis">{{equipment.name}}</view>
-      </view>
-      <view class="g-flex g-flex-v-center table-tr">
-        <view class=" table-td g-ellipsis table-td-short table-right-border">型号</view>
-        <view class="g-flex-c1 table-td g-ellipsis">{{equipment.type}}</view>
-      </view>
-      <view class="g-flex g-flex-v-center table-tr">
-        <view class=" table-td g-ellipsis table-td-short table-right-border">制造商</view>
-        <view class="g-flex-c1 table-td g-ellipsis">{{equipment.vendor}}</view>
-      </view>
-      <view class="g-flex g-flex-v-center table-tr">
-        <view class=" table-td g-ellipsis table-td-short table-right-border">制造商型号</view>
-        <view class="g-flex-c1 table-td g-ellipsis">{{equipment.vendor_type}}</view>
-      </view>
-      <view class="g-flex g-flex-v-center table-tr">
-        <view class=" table-td g-ellipsis table-td-short table-right-border">技术类别</view>
-        <view class="g-flex-c1 table-td g-ellipsis">{{equipment.technical}}</view>
-      </view>
-    </view>
-  </view>
-  <view class="g-ta-ct g-fw" style="margin-bottom:10rpx">
-    上海电气集团股份有限公司中央研究院
-  </view>
-  <view class="item-con">
-    <view class="item g-flex g-flex-v-center" wx:for="{{equips}}" wo:for-item='company' wx:key="pk" data-item="{{item}}" data-id="{{item.pk}}" bindtap='XjAction'>
-      <view class="g-flex-c1 g-ellipsis">{{item.fields.name}}设备</view>
-      <view class="iconfont iconfontangle-right g-text-gray"></view>
-    </view>
-  </view>
-</view>
