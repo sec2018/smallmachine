@@ -83,6 +83,7 @@
         <view class="iconfont iconfontangle-right"></view>
       </view> -->
     </view>
+    <view class="g-button-primary g-mt80"  bindtap="sureUpload">提交巡检结果</view>
   </view>
   <view>
     <view class="list-name-con">

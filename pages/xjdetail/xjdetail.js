@@ -1,6 +1,6 @@
 // pages/xjdetail/xjdetail.js
 const utils = require('../../utils/utils.js');
-
+const app = getApp();
 
 Page({
 
@@ -11,7 +11,7 @@ Page({
     equid:null,
     chkplanlist:[],
     firstchkplan:{},
-    submitdata:[],
+    submitdata:{},
     historyinfo:[
       {
         time: '2020/08/09 18:45',
@@ -71,6 +71,8 @@ Page({
                     if(chkplanres.data.code == 200){
                       that.setData({
                         firstchkplan: chkplanres.data.data, //请求结果数据
+                        [`submitdata.technician_id`]: app.globalData.userInfo.id,
+                        [`submitdata.chk_plan_id`]: chkplanres.data.data.id,
                       })
                       console.log(this.data.firstchkplan);
                     }else{
@@ -184,6 +186,7 @@ Page({
  
   //提交到后台
   sureUpload:function(e){
+    let that = this;
     wx.showModal({
       title: '提交巡检结果',
       content: '确定提交？',
@@ -193,42 +196,54 @@ Page({
             title: '正在提交',
             mask:true
           })
-          let count = 0;
-          for (var i = 0; i < imgList.length; i++) {
-            var imgUrl = imgList[i];
-            utils.fileRequest({
-              url: '/monitor/xjinfo/uploadimg',
-              filePath: imgUrl,
-              success:function(res){
-                  console.log(res);
-                  if(res.data.code == 200){
-                    count++;
-                    if(count == imgList.length){
-                      wx.hideLoading();
-                      wx.showToast({
-                        title: '上传成功',
-                        icon:"success",
-                        duration:2000
-                      })
-                    }
-                  }else{
-                    if(count == imgList.length){
-                      wx.hideLoading();
-                      wx.showToast({
-                        title: '上传成功',
-                        icon:"success",
-                        duration:2000
-                      })
-                    }
-                    return;
-                  }
-              },
-              fail:function(res){
-                wx.hideLoading();
-                return;
-              }
-            })
-          } //for循环结束
+          let feedback_data = [];
+          for(var i = 0; i < that.data.firstchkplan.add_item.length; i++){
+            let item = {};
+            item.id = that.data.firstchkplan.add_item[i].id;
+            item.result = that.data.firstchkplan.add_item[i].result;
+            item.pic_url = that.data.firstchkplan.add_item[i].pic_url;
+            feedback_data.push(item);
+          }
+          for(var j = 0; j < that.data.firstchkplan.chk_routine.chk_class.length; j++){
+            for(var k = 0; k < that.data.firstchkplan.chk_routine.chk_class[j].item.length; k++){
+              let item = {};
+              item.id = that.data.firstchkplan.chk_routine.chk_class[j].item[k].id;
+              item.result = that.data.firstchkplan.chk_routine.chk_class[j].item[k].result;
+              item.pic_url = that.data.firstchkplan.chk_routine.chk_class[j].item[k].pic_url;
+              feedback_data.push(item);
+            }
+          }
+          that.setData({
+            [`submitdata.feedback_data`]: feedback_data,
+          })
+          utils.pythonRequest({
+            url: '/postNewChkHistory/',
+            data: that.data.submitdata,
+            methods:'POST',
+            success:function(res){
+                console.log(res);
+                if(res.data.code == 200){
+                  wx.hideLoading();
+                  wx.showToast({
+                    title: '提交成功',
+                    icon:"success",
+                    duration:2000
+                  })
+                }else{
+                  wx.hideLoading();
+                  wx.showToast({
+                    title: '提交失败',
+                    icon:"failed",
+                    duration:2000
+                  })
+                  return;
+                }
+            },
+            fail:function(res){
+              wx.hideLoading();
+              return;
+            }
+          })
         } else if (res.cancel) {
           console.log('用户点击取消')
         }

@@ -22,5 +22,5 @@
       <view>{{imgs.length}}/1</view>
     </view>
   </view>
-  <!-- <view class="g-button-primary g-mt20" bindtap="handleSave">保存</view> -->
+  <!-- <view class="g-button-primary g-mt20" bindtap="handleSave">提交巡检结果</view> -->
 </view>
