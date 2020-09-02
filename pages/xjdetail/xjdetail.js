@@ -173,6 +173,12 @@ Page({
       url: '../xjplan/xjplan?equnum='+equ.num+'&equipname='+equ.name
     })
   },
+  XjHistoryPlans: function (e) { 
+    let equ = this.data.equipment;
+    wx.navigateTo({
+      url: '../xjhistoryplan/xjhistoryplan?equnum='+equ.num+'&equipname='+equ.name
+    })
+  },
   handleShowDetail: function(e){
     let {index} = e.currentTarget.dataset;
     console.log(index, this.data.chkIndex)
@@ -219,6 +225,7 @@ Page({
           utils.pythonRequest({
             url: '/postNewChkHistory/',
             data: that.data.submitdata,
+            contentType: 'application/json',
             methods:'POST',
             success:function(res){
                 console.log(res);

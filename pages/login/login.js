@@ -26,7 +26,7 @@ Page({
                             console.log(res);
                             if(res.data.code == 200){
                                 wx.reLaunch({
-                                    url: "/pages/index/index"
+                                    url: "/pages/main/main"
                                 });
                             }else{
                                 // 登录
@@ -92,7 +92,7 @@ Page({
             app.globalData.userInfo = userinfo;
             if(userinfo.is_superuser){
                 wx.reLaunch({
-                    url: "/pages/index/index"
+                    url: "/pages/main/main"
                 });
             }else{
                 wx.reLaunch({

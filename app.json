@@ -16,7 +16,8 @@
     "pages/xjdetail/xjdetail",
     "pages/xjorder/xjorder",
     "pages/xjplan/xjplan",
-    "pages/listdetail/listdetail"
+    "pages/listdetail/listdetail",
+    "pages/xjhistoryplan/xjhistoryplan"
   ],
   "window": {
     "navigationBarTitleText": "设备智能云",
@@ -29,7 +30,7 @@
     "selectedColor": "#ff520f",
     "list": [
       {
-        "pagePath": "pages/index/index",
+        "pagePath": "pages/main/main",
         "text": "首页",
         "iconPath": "/image/icon/home-icon.png",
         "selectedIconPath": "/image/icon/home-selectIcon.png"
@@ -39,12 +40,6 @@
         "text": "巡检",
         "iconPath": "/image/icon/fen-icon.png",
         "selectedIconPath": "/image/icon/fen-selectIcon.png"
-      },
-      {
-        "pagePath": "pages/main/main",
-        "text": "监控",
-        "iconPath": "/image/icon/collection-icon.png",
-        "selectedIconPath": "/image/icon/collection-selectIcon.png"
       },
       {
         "pagePath": "pages/user/user",

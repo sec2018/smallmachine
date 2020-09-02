@@ -1,0 +1,10 @@
+<!--pages/xjhistoryplan/xjhistoryplan.wxml-->
+<view>
+  <view class="g-ta-ct name g-fw-bold">{{equipname}}历史巡检记录</view>
+  <view class="item-con">
+    <view class="item g-flex g-flex-v-center" wx:for="{{xjplans}}" wo:for-item='xjplan' wx:key="id" data-item= "{{item}}" data-id="{{item.chk_plan_id}}" bindtap='planDetail'>
+      <view class="g-flex-c1 g-ellipsis">{{item.chk_plan_date}}计划 (更新于{{item.update}})</view>
+      <view class="iconfont iconfontangle-right g-text-gray"></view>
+    </view>
+  </view>
+</view>

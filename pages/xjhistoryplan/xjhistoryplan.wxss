@@ -1,4 +1,4 @@
-/* pages/xjplan/xjplan.wxss */
+/* pages/xjhistoryplan/xjhistoryplan.wxss */
 .list-li{
   padding: 0 30rpx 30rpx;
   line-height: rpx2(42);

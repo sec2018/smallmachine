@@ -1,5 +1,5 @@
 <!--pages/scan.wxml-->
-<view class="container">
+<!-- <view class="container">
   <button bindtap='getScancode'>绑定机床</button>
   <view wx:if="{{result !=''}}">
     <view>扫码的内容:{{result}}</view>
@@ -9,4 +9,4 @@
       <button bindtap="dataout" class="weui-btn" type="primary" plain='true'>出库</button>
       <button bindtap="query" class="weui-btn" type="primary" plain='true'>查询</button>
     </view>
-</view>
+</view> -->

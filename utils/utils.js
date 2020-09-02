@@ -4,7 +4,7 @@
 // let apiRoot = 'http://localhost:8050/itwx';
 let apiRoot = 'https://letsmodel.cn:8050/itwx';
 let apiPythonRoot = 'https://micro-service.online:8051/api';
-// let apiPythonRoot = 'http://10.84.11.61:8051/api';
+// let apiPythonRoot = 'http://10.84.11.61:8000/api';
 
  /*
   自己基于wx.request封装的一个请求函数（粗陋封装各位不要笑话）
@@ -103,12 +103,18 @@ let serverRequest = function(args = {url:'',methods:'', data:{}, success:functio
   }
 }
 
-let pythonRequest = function(args = {url:'',methods:'', data:{}, success:function(){},fail:function(){}}){
+let pythonRequest = function(args = {url:'',methods:'', data:{}, contentType:'', success:function(){},fail:function(){}}){
+  if(args.contentType!=null && args.contentType =='application/json'){
+    args.contentType = 'application/json';
+  }else{
+    args.contentType = 'application/x-www-form-urlencoded';
+  }
+
   if(args.methods == "POST"){
     wx.request({
       url: apiPythonRoot+args.url,
       data: args.data,
-      header: {'content-type':'application/x-www-form-urlencoded','Authorization':'JWT '+wx.getStorageSync('token')},
+      header: {'content-type':args.contentType,'Authorization':'JWT '+wx.getStorageSync('token')},
       method: args.methods,
       dataType: 'json',
       responseType: 'text',

@@ -5,6 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    on: true,
     result: ''
   },
 
@@ -26,14 +27,35 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    var that = this
+    if (that.data.on) {
+      var call = that.data.call
+      wx.scanCode({
+        success: (res) => {
+          var id = res.result
+          wx.redirectTo({
+            url: '../xjdetail/xjdetail?id='+id
+          })
+        },
+        fail: (err) => {
+          console.log(err, 'fail')
+          wx.switchTab({
+            url: '/pages/main/main',
+          })
+        }
+      })
+    }
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-
+    var that = this
+    var on = that.data.on
+    that.setData({
+      on: !on
+    })
   },
 
   /**

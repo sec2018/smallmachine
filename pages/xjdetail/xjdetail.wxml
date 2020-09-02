@@ -5,7 +5,7 @@
     <view class="head-list">
       <view class="g-flex g-flex-v-center">
         <view class="head-list-name g-flex-c1">数据汇总</view>
-        <view>查看全部</view>
+        <view bindtap='XjHistoryPlans'>查看全部</view>
       </view>
       <view class="g-flex g-flex-v-center g-mt20">
         <view class="head-list-left">时间</view>
@@ -39,7 +39,7 @@
     </view>
     <view class="hd-block g-flex g-flex-v-center g-flex-between" bindtap='XjPlans'>
       <view>
-        <view class="hd-name g-fw-bold g-text-primary">巡检计划</view>
+        <view class="hd-name g-fw-bold g-text-primary">未来巡检计划</view>
         <view class="g-text-grey">查看设备巡检计划</view>
       </view>
     </view>
