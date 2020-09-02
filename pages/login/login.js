@@ -79,6 +79,13 @@ Page({
                     return;
                 }
                 this.loginSuccess(res.data.data);
+            },
+            fail: res => {
+                wx.showToast({
+                    title: '用户认证失败',
+                    icon:"none",
+                    duration:5000
+                })
             }
         });
     },

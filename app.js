@@ -22,17 +22,23 @@ App({
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
         let dataParam = {};
         dataParam.code = res.code;
-        utils.serverRequest({
-          url: '/wx/user/'+this.globalData.appid+'/wxlogin',
+        utils.pythonRequest({
+          // url: '/wx/user/'+this.globalData.appid+'/wxlogin',
+          url: '/weChatLogin/',
           methods:'GET',
           data: dataParam,
           success:function(res){
             // console.log(res.data.token);
-            wx.setStorageSync('sessionKey', res.data.sessionKey);
+            wx.setStorageSync('sessionKey', res.data.data.session_key);
+            // wx.showToast({
+            //   title: res.data.sessionKey,
+            //   icon:'none'
+            // });
             wx.showToast({
-              title: res.data.sessionKey,
-              icon:'none'
-            });
+              title: '服务连接成功',
+              icon:"success",
+              duration:2000
+            })
           },
           fail:function(){
           }

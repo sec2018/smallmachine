@@ -4,33 +4,33 @@
     <view class="name g-ta-ct g-fw-bold g-mb20">{{equipment.name}}</view>
     <view class="head-list">
       <view class="g-flex g-flex-v-center">
-        <view class="head-list-name g-flex-c1">数据汇总</view>
-        <view bindtap='XjHistoryPlans'>查看全部</view>
+        <view class="head-list-name g-flex-c1">设备信息</view>
+        <view bindtap='XjHistoryPlans'>查看巡检记录</view>
       </view>
       <view class="g-flex g-flex-v-center g-mt20">
-        <view class="head-list-left">时间</view>
-        <view>{{lasthistoryinfo.time}}</view>
+        <view class="head-list-left">型号</view>
+        <view style="margin-left:25rpx">{{equipment.type}}</view>
       </view>
       <view class="g-flex g-flex-v-center g-mt20">
-        <view class="head-list-left">表单</view>
-        <view>{{lasthistoryinfo.formname}}</view>
+        <view class="head-list-left">制造商</view>
+        <view style="margin-left:25rpx">{{equipment.vendor}}</view>
       </view>
       <view class="g-flex g-flex-v-center g-mt20">
-        <view class="head-list-left">巡检人</view>
-        <view>{{lasthistoryinfo.xjpersonname}}</view>
+        <view class="head-list-left">制造商型号</view>
+        <view style="margin-left:25rpx">{{equipment.vendor_type}}</view>
       </view>
       <view class="g-flex g-flex-v-center g-mt20">
-        <view class="head-list-left">巡检结果</view>
-        <view>{{lasthistoryinfo.xjresult}}</view>
+        <view class="head-list-left">技术类别</view>
+        <view style="margin-left:25rpx">{{equipment.technical}}</view>
       </view>
     </view>
-    <view class="hd-block g-flex g-flex-v-center g-flex-between" bindtap='XjDetailAction'>
+    <!-- <view class="hd-block g-flex g-flex-v-center g-flex-between" bindtap='XjDetailAction'>
       <view>
         <view class="hd-name g-fw-bold g-text-primary">设备巡检</view>
         <view class="g-text-grey">请填写巡检记录</view>
       </view>
       <view class="g-text-grey hd-plus">+</view>
-    </view>
+    </view> -->
     <view class="hd-block g-flex g-flex-v-center g-flex-between">
       <view>
         <view class="hd-name g-fw-bold g-text-primary">设备监控</view>
@@ -83,9 +83,9 @@
         <view class="iconfont iconfontangle-right"></view>
       </view> -->
     </view>
-    <view class="g-button-primary g-mt80"  bindtap="sureUpload">提交巡检结果</view>
+    <view class="g-button-primary g-mt80" style="width:70%; margin:0 auto"  bindtap="sureUpload">提交巡检结果</view>
   </view>
-  <view>
+  <!-- <view>
     <view class="list-name-con">
       <text class="list-name">设备信息</text>
     </view>
@@ -112,8 +112,8 @@
         <view class="g-flex-c1 table-td g-ellipsis">{{equipment.technical}}</view>
       </view>
     </view>
-  </view>
-  <view class="g-ta-ct g-fw" style="margin-bottom:10rpx">
+  </view> -->
+  <view class="g-ta-ct g-fw" style="margin-bottom:30rpx;padding-top:30rpx">
     上海电气集团股份有限公司中央研究院
   </view>
   <view class="item-con">

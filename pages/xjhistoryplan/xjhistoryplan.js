@@ -26,7 +26,7 @@ Page({
       let dataParam = {};
       dataParam.equ_num = options.equnum;
       utils.pythonRequest({
-        url: '/queryChkHistoryList',
+        url: '/queryChkHistoryList/',
         data: dataParam,
         methods:'GET',
         success:function(res){
