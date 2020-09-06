@@ -9,6 +9,7 @@ Page({
    */
   data: {
     equid:null,
+    fromPage: '',
     chkplanlist:[],
     firstchkplan:{},
     submitdata:{},
@@ -47,7 +48,8 @@ Page({
     var that = this;
     if(options.id != null && !options.username){
       that.setData({
-        equid: options.id
+        equid: options.id,
+        fromPage: options.fromPage
       })
       let dataParam = {};
       dataParam.equ_id = options.id;
@@ -230,12 +232,17 @@ Page({
             success:function(res){
                 console.log(res);
                 if(res.data.code == 200){
-                  wx.hideLoading();
+                  // wx.hideLoading();
                   wx.showToast({
                     title: '提交成功',
                     icon:"success",
                     duration:2000
                   })
+                  // if(that.data.fromPage==='main'){
+                  //   wx.switchTab({
+                  //     url: '/pages/main/main',
+                  //   })
+                  // }
                 }else{
                   wx.hideLoading();
                   wx.showToast({

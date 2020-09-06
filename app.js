@@ -6,7 +6,7 @@ App({
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
-
+    
     this.mylogin();
    
   },
@@ -16,6 +16,7 @@ App({
     imgurl: 'https://micro-service.online:8051/media/'
   },
   mylogin: function(){
+    const that = this;
     // 登录
     wx.login({
       success: res => {
@@ -39,6 +40,16 @@ App({
               icon:"success",
               duration:2000
             })
+            const _userInfo =  wx.getStorageSync("userInfo");
+            let userInfo = null;
+            if(_userInfo){
+              that.globalData.userInfo = JSON.parse(_userInfo);
+            } else {
+              wx.redirectTo({
+                url: '/pages/login/login',
+              })
+            }
+            
           },
           fail:function(){
           }

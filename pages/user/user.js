@@ -91,8 +91,10 @@ Page({
         userinfoparam.iv = res.iv;
         userinfoparam.username = app.globalData.userInfo.username;
         console.log(userinfoparam);
-        utils.serverRequest({
-          url: '/wx/user/'+app.globalData.appid+'/info',
+        // utils.serverRequest({
+        //   url: '/wx/user/'+app.globalData.appid+'/info',
+        utils.pythonRequest({
+          url: '/weChatGetInfo/',
           methods:'GET',
           data: userinfoparam,
           success:function(res){

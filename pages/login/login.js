@@ -96,6 +96,7 @@ Page({
             this.setData({ showLogin: true });
         } else {
             wx.setStorageSync("token", token);
+            wx.setStorageSync("userInfo", JSON.stringify(userinfo));
             app.globalData.userInfo = userinfo;
             if(userinfo.is_superuser){
                 wx.reLaunch({

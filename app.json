@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/main/main",
     "pages/login/login",
     "pages/index/index",
     "pages/classification/classification",
@@ -11,7 +12,7 @@
     "pages/search/search",
     "pages/monitor/monitor",
     "pages/scan/scan",
-    "pages/main/main",
+    
     "pages/singlecompany/singlecompany",
     "pages/xjdetail/xjdetail",
     "pages/xjorder/xjorder",
@@ -38,7 +39,7 @@
       {
         "pagePath": "pages/scan/scan",
         "text": "巡检",
-        "iconPath": "/image/icon/fen-icon.png",
+        "iconPath": "/image/icon/scan.png",
         "selectedIconPath": "/image/icon/fen-selectIcon.png"
       },
       {

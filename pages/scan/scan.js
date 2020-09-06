@@ -34,7 +34,7 @@ Page({
         success: (res) => {
           var id = res.result
           wx.redirectTo({
-            url: '../xjdetail/xjdetail?id='+id
+            url: '../xjdetail/xjdetail?fromPage=main&id='+id
           })
         },
         fail: (err) => {
