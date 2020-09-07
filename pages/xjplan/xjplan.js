@@ -25,25 +25,31 @@ Page({
       })
       let dataParam = {};
       dataParam.equ_num = options.equnum;
+      wx.showLoading({
+        title: '获取中...',
+        mask: true,
+      })
       utils.pythonRequest({
         url: '/queryChkPlanList/',
         data: dataParam,
         methods:'GET',
         success:function(res){
-            if(res.data.code == 200){
-              that.setData({
-                xjplans: res.data.data, //请求结果数据
-              })
+          wx.hideLoading();
+          if(res.data.code == 200){
+            that.setData({
+              xjplans: res.data.data, //请求结果数据
+            })
 
-            }else{
-                // 登录
-                return;
-            }
+          }else{
+              // 登录
+              return;
+          }
         },
         fail:function(res){
-            // 登录
-            return;
-          }
+          wx.hideLoading();
+          // 登录
+          return;
+        }
       });
     }
   },

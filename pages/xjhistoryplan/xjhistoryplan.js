@@ -25,16 +25,20 @@ Page({
       })
       let dataParam = {};
       dataParam.equ_num = options.equnum;
+      wx.showLoading({
+        title: '获取中...',
+        mask: true,
+      })
       utils.pythonRequest({
         url: '/queryChkHistoryList/',
         data: dataParam,
         methods:'GET',
         success:function(res){
+            wx.hideLoading();
             if(res.data.code == 200){
               that.setData({
                 xjplans: res.data.data, //请求结果数据
               })
-
             }else{
                 // 登录
                 return;
@@ -42,6 +46,7 @@ Page({
         },
         fail:function(res){
             // 登录
+            wx.hideLoading();
             return;
           }
       });

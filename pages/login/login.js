@@ -65,6 +65,17 @@ Page({
         dataparam.password = this.data.password;
         // utils.serverRequest({
         //     url: '/wx/user/'+app.globalData.appid+'/login',
+        wx.showLoading({
+            title: '登录中...',
+            mask: true,
+        })
+        // // 登录
+        // wx.login({
+        //     success: res => {
+        //         // 发送 res.code 到后台换取 openId, sessionKey, unionId
+        //         dataParam.code = res.code;
+        //     }
+        // });
         utils.pythonRequest({
             url: '/getJWTtoken/',
             methods: "POST",

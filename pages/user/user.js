@@ -85,12 +85,18 @@ Page({
           sessionKey = wx.getStorageSync('sessionKey');
         }
         userinfoparam.sessionKey = sessionKey;
-        userinfoparam.signature = res.signature;
-        userinfoparam.rawData = res.rawData;
+        // userinfoparam.signature = res.signature;
+        // userinfoparam.rawData = res.rawData;
         userinfoparam.encryptedData = res.encryptedData;
         userinfoparam.iv = res.iv;
-        userinfoparam.username = app.globalData.userInfo.username;
+        // userinfoparam.username = app.globalData.userInfo.username;
+        let userInfo = JSON.parse(wx.getStorageSync("userInfo"));
+        userinfoparam.username = userInfo.username;
         console.log(userinfoparam);
+        wx.showLoading({
+          title: '绑定中...',
+          mask: true,
+        })
         // utils.serverRequest({
         //   url: '/wx/user/'+app.globalData.appid+'/info',
         utils.pythonRequest({
@@ -98,19 +104,30 @@ Page({
           methods:'GET',
           data: userinfoparam,
           success:function(res){
-            wx.showToast({
-              mask: true,
-              icon: "none",
-              title: res.data.msg
-            });
             if(res.data.code == 200){
-              app.globalData.userInfo = res.data.userInfo;
+              wx.showToast({
+                mask: true,
+                icon: "none",
+                title: "绑定成功"
+              });
+              app.globalData.userInfo = res.data.data;
               that.setData({
                 login: false
+              });
+            }else{
+              wx.showToast({
+                mask: true,
+                icon: "none",
+                title: "绑定异常，请重新绑定"
               });
             }
           },
           fail:function(res){
+            wx.showToast({
+              mask: true,
+              icon: "none",
+              title: "绑定失败"
+            });
           }
         });
       }

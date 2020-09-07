@@ -32,14 +32,10 @@ App({
             // console.log(res.data.token);
             wx.setStorageSync('sessionKey', res.data.data.session_key);
             // wx.showToast({
-            //   title: res.data.sessionKey,
-            //   icon:'none'
-            // });
-            wx.showToast({
-              title: '服务连接成功',
-              icon:"success",
-              duration:2000
-            })
+            //   title: '服务连接成功',
+            //   icon:"success",
+            //   duration:2000
+            // })
             const _userInfo =  wx.getStorageSync("userInfo");
             let userInfo = null;
             if(_userInfo){
@@ -52,6 +48,11 @@ App({
             
           },
           fail:function(){
+            wx.showToast({
+              title: '服务连接失败',
+              icon:"none",
+              duration:2000
+            })
           }
         })
       }

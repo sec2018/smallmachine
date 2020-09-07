@@ -2,7 +2,7 @@
  * 本文件主要是工具类函数
  */
 // let apiRoot = 'http://localhost:8050/itwx';
-let apiRoot = 'https://letsmodel.cn:8050/itwx';
+// let apiRoot = 'https://letsmodel.cn:8050/itwx';
 let apiPythonRoot = 'https://micro-service.online:8051/api';
 // let apiPythonRoot = 'http://10.84.11.174:8000/api';
 
@@ -204,6 +204,7 @@ let loginAndSaveUser = function(){
       userinfoparam.encryptedData = res.encryptedData;
       userinfoparam.iv = res.iv;
       console.log(userinfoparam);
+      
       utils.serverRequest({
         url: '/wx/user/'+app.globalData.appid+'/info',
         methods:'GET',
