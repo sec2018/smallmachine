@@ -161,6 +161,64 @@ Page({
     that.setData({
       activeIndex:e.currentTarget.dataset.activeindex
     })
+  },
+  logOut:function(e){
+    wx.showModal({
+      title: '确定注销吗',
+      success(res) {
+        if (res.confirm) {
+　　　　　 wx.removeStorageSync('sessionKey');
+          wx.removeStorageSync('userInfo');
+          app.globalData.userInfo = null;
+          wx.navigateTo({
+            url: '/pages/login/login',
+          });
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })
+  },
+  // 扫码入库
+  bindEqu: function(){
+    let params = {};
+    wx.scanCode({
+      success: function(res){
+        let userInfo = JSON.parse(wx.getStorageSync("userInfo"));
+        params.equ_num = res['result'];
+        params.technician_username = userInfo.username;
+        utils.pythonRequest({
+          url: '/postBindSingleEqu/',
+          methods:'POST',
+          data: params,
+          success:function(res){
+            if(res.data.code == 200){
+              wx.showToast({
+                mask: true,
+                icon: "none",
+                title: "绑定设备成功"
+              });
+            }else{
+              wx.showToast({
+                mask: true,
+                icon: "none",
+                title: "绑定异常，请重新绑定"
+              });
+            }
+          },
+          fail:function(res){
+            wx.showToast({
+              mask: true,
+              icon: "none",
+              title: "绑定失败"
+            });
+          }
+        });
+      },
+      fail: function(res){
+        
+      }
+    })
   }
 
 })

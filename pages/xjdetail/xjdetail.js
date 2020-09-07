@@ -263,5 +263,55 @@ Page({
         }
       }
     });
+  },
+  //解绑设备
+  unBindEqu:function(e){
+    let that = this;
+    wx.showModal({
+      title: '解绑设备',
+      content: '确定要解绑吗？',
+      success(res) {
+        if (res.confirm) {
+          wx.showLoading({
+            title: '正在解绑',
+            mask:true
+          })
+          let userInfo = JSON.parse(wx.getStorageSync("userInfo"));
+          let params = {};
+          params.technician_username = userInfo.username;
+          params.equ_num = that.data.equipment.num;
+          utils.pythonRequest({
+            url: '/postUnBindSingleEqu/',
+            data: params,
+            methods:'POST',
+            success:function(res){
+                if(res.data.code == 200){
+                  wx.showToast({
+                    title: '解绑成功',
+                    icon:"success",
+                    duration:2000
+                  })
+                  wx.reLaunch({
+                    url: "/pages/main/main?username="+userInfo.username,
+                  });
+                }else{
+                  wx.showToast({
+                    title: '解绑失败',
+                    icon:"failed",
+                    duration:2000
+                  })
+                  return;
+                }
+            },
+            fail:function(res){
+              wx.hideLoading();
+              return;
+            }
+          })
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    });
   }
 })

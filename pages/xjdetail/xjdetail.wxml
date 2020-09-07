@@ -43,6 +43,11 @@
         <view class="g-text-grey">查看设备巡检计划</view>
       </view>
     </view>
+    <view class="hd-block g-flex g-flex-v-center g-flex-between" bindtap='unBindEqu'>
+      <view>
+        <view class="hd-name g-fw-bold g-text-primary">解绑设备</view>
+      </view>
+    </view>
   </view>
   <view>
     <view class="list-name-con">

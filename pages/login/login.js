@@ -109,16 +109,19 @@ Page({
             wx.setStorageSync("token", token);
             wx.setStorageSync("userInfo", JSON.stringify(userinfo));
             app.globalData.userInfo = userinfo;
-            if(userinfo.is_superuser){
-                wx.reLaunch({
-                    url: "/pages/main/main"
-                });
-            }else{
-                wx.reLaunch({
-                    url: '/pages/singlecompany/singlecompany?username='+username,
-                });
-            }
-            
+            // if(userinfo.is_superuser){
+            //     wx.reLaunch({
+            //         url: "/pages/main/main"
+            //     });
+            // }else{
+            //     wx.reLaunch({
+            //         url: '/pages/singlecompany/singlecompany?username='+username,
+            //     });
+            // }
+
+            wx.reLaunch({
+                url: "/pages/main/main?username="+userinfo.username,
+            });
             wx.hideLoading();
             // apiStaff.staffInfo({
             //     success: staffInfo => {

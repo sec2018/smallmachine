@@ -10,14 +10,31 @@ Page({
    */
   data: {
     companys: [], // 公司列表
-    imgurl: imgurl
+    imgurl: imgurl,
+    username: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+    var that = this;
+    if(options.username != null && options.username != ""){
+      that.setData({
+        username: options.username,
+      })
+    }
+    const _userInfo =  wx.getStorageSync("userInfo");
+    if(_userInfo){
+      app.globalData.userInfo = JSON.parse(_userInfo);
+      that.setData({
+        username: app.globalData.userInfo.username,
+      })
+    } else {
+      wx.redirectTo({
+        url: '/pages/login/login',
+      })
+    }
   },
 
   /**
@@ -32,8 +49,11 @@ Page({
    */
   onShow: function () {
     let that = this;
+    let dataParam = {};
+    dataParam.username = that.data.username;
     utils.pythonRequest({
       url: '/getCompanyAll/',
+      data: dataParam,
       methods:'GET',
       success:function(res){
           console.log(res);
@@ -88,9 +108,10 @@ Page({
 
   },
   companyDetailAction: function (e) { 
+    let that = this;
     let num = parseInt(e.currentTarget.dataset.item.fields.num);
     wx.navigateTo({
-      url: '../singlecompany/singlecompany?num='+num,
+      url: '../singlecompany/singlecompany?num='+num+'&username='+that.data.username,
     })
   },
 })

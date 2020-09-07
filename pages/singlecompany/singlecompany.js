@@ -22,12 +22,14 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
-    if(options.num != null && options.username == null){
+    if(options.num != null && options.username != null){
       that.setData({
-        company_num: options.num
+        company_num: options.num,
+        username: options.username
       })
       let dataParam = {};
       dataParam.company_num = options.num;
+      dataParam.technician_username = options.username;
       utils.pythonRequest({
         url: '/getComEqu/',
         data: dataParam,

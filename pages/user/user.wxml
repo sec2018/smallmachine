@@ -55,6 +55,10 @@
 		</view>
 		<!-- 选项卡部分 -->
 		<view class="chioce">
+			<view class="user-item g-flex g-flex-v-center" bindtap="bindEqu">
+        <view class="g-flex-c1 g-mr20">扫码绑定设备</view>
+        <view class="iconfont iconfontangle-right text-gray"></view>
+      </view>
       <view class="user-item g-flex g-flex-v-center" bindtap="openSwitch">
         <view class="g-flex-c1 g-mr20">定时关闭</view>
         <view class="iconfont iconfontangle-right text-gray"></view>
@@ -62,6 +66,10 @@
       <view class="user-item g-flex g-flex-v-center">
       <!-- 意见反馈需要使用button的open-type属性 此处没有设置-->
         <view class="g-flex-c1 g-mr20">意见反馈</view>
+        <view class="iconfont iconfontangle-right text-gray"></view>
+      </view>
+			 <view class="user-item g-flex g-flex-v-center" bindtap="logOut">
+        <view class="g-flex-c1 g-mr20">注销登录</view>
         <view class="iconfont iconfontangle-right text-gray"></view>
       </view>
 			<!-- <view class="choiceItem" bindtap="gotoLogin"> -->
